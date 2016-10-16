@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyFlikerProgressBar1">
+        <attr name="myTextSize" format="dimension|reference"/>
+        <attr name="myLoadingColor" format="color"/>
+        <attr name="myStopColor" format="color|reference"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="MyGlitterProcess">
+        <attr name="glitterTextSize" format="dimension|reference"/>
+        <attr name="glitterLoadingColor" format="color|reference"/>
+        <attr name="glitterStopColor" format="color|reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="KeyTextViewSpan">
+        <attr name="span_text_view_key" format="string|reference"/>
+        <attr name="span_text_view_key_color1" format="color|reference"/>
+        <attr name="span_text_view_key_color2" format="color|reference"/>
+        <attr name="span_text_view_key_color3" format="color|reference"/>
+    </declare-styleable>
+
+
+</resources>
