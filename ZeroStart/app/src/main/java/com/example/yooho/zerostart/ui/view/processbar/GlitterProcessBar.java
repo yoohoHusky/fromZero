@@ -19,6 +19,15 @@ import com.example.yooho.zerostart.R;
 
 /**
  * Created by yooho on 16/10/10.
+ *
+ * 主要的点:
+ * 1、自定义xml配置属性
+ * 2、在onMeasure时读取、设置长、宽
+ * 3、画框,
+ * 4、画进度颜色(save,clipRect,restore)5
+ * 5、动态画滑动模块(动态计算left)
+ * 6、动态画文字(先得到文字的rect,得到长宽,动态改变颜色,范围)paint.getTextBound
+ *
  */
 public class GlitterProcessBar extends View implements Runnable{
 

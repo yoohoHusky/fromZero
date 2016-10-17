@@ -17,6 +17,19 @@ import java.util.List;
 
 /**
  * Created by yooho on 16/10/12.
+ *
+ * 主要的点:
+ * 1、改变字体颜色
+ * new foregroundColorSpan(color)
+ * foregroundColorSpan.setSpan
+ * textView.setText(foregroundColorSpan)
+ *
+     for {
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(keyModel.color);
+        spanBuilder.setSpan(foregroundColorSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+     }
+     setText(spanBuilder);
+ *
  */
 public class KeyTextViewSpan extends TextView {
 
