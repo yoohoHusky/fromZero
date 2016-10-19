@@ -27,6 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="textView模块"/>
+        <Button
+            android:id="@+id/model_tab_host"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tabHost模块"/>
 
     </LinearLayout>
 </RelativeLayout>

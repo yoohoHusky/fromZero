@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_download).setOnClickListener(this);
         findViewById(R.id.model_dialog).setOnClickListener(this);
         findViewById(R.id.model_text_view).setOnClickListener(this);
+        findViewById(R.id.model_tab_host).setOnClickListener(this);
     }
 
     @Override
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, DialogActivity.class));
         } else if (v.getId() == R.id.model_text_view) {
             startActivity(new Intent(this, TextViewActivity.class));
+        } else if (v.getId() == R.id.model_tab_host) {
+            startActivity(new Intent(this, IndexEnterActivity.class));
         }
     }
 }
