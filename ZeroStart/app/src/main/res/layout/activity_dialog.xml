@@ -18,6 +18,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="测试dialog问题"/>
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全屏透明dialog"/>
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dialog动画下方"/>
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dialog动画左方"/>
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="悬浮弹框"/>
 
     </LinearLayout>
 </RelativeLayout>

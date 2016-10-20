@@ -11,12 +11,22 @@
     <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
         <item name="android:backgroundDimAmount">0.75</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="WebViewDialogAnim" parent="@android:style/Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/webview_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/webview_dialog_exit</item>
+    </style>
+    <style name="WebViewDialogAnim2" parent="@android:style/Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/webview_dialog_test_left</item>
+        <item name="android:windowExitAnimation">@anim/webview_dialog_test_right</item>
     </style>
 
 </resources>
