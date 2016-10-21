@@ -101,11 +101,15 @@ public class KeyTextViewSpan extends TextView {
     }
 
     private List<Integer> getKeyIndexList(String text, String key, boolean canRepeat) {
+        if (TextUtils.isEmpty(key)) {
+            return null;
+        }
         List<Integer> startList = null;
         int index = text.indexOf(key, 0);
         if (index > -1) {
             startList = new ArrayList<>();
             startList.add(index);
+            index = text.indexOf(key, index + 1);
 
             while (canRepeat && index > -1) {
                 startList.add(index);

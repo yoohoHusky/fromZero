@@ -29,4 +29,9 @@
         <item name="android:windowExitAnimation">@anim/webview_dialog_test_right</item>
     </style>
 
+    <style name="live_my_course_save_guide">
+        <item name="android:windowEnterAnimation">@anim/live_my_course_save_guide_show</item>
+        <item name="android:windowExitAnimation">@anim/live_my_course_save_guide_dissmis</item>
+    </style>
+
 </resources>

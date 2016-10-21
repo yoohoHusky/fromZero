@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
@@ -16,14 +18,14 @@ import android.widget.Toast;
  * 重要的点:
  * 1、设置dialog主题
  *   <style name="TransparentDialog" parent="@android:style/Theme.Dialog">
- *   <item name="android:backgroundDimAmount">0.75</item>                    # 设置背景透明度
- *   <item name="android:windowBackground">@android:color/transparent</item> # 设置整个框背景（）
- *   <item name="android:windowFrame">@null</item>                           # 背景是否有边框
- *   <item name="android:windowNoTitle">true</item>                          # 是否有上半部的部分
- *   <item name="android:windowIsFloating">true</item>
- *   <item name="android:windowIsTranslucent">true</item>
- *   <item name="android:background">@android:color/transparent</item>       # 设置title，context背景
- *   <item name="android:backgroundDimEnabled">true</item>
+     *   <item name="android:backgroundDimAmount">0.75</item>                    # 设置背景透明度
+     *   <item name="android:windowBackground">@android:color/transparent</item> # 设置整个框背景（）
+     *   <item name="android:windowFrame">@null</item>                           # 背景是否有边框
+     *   <item name="android:windowNoTitle">true</item>                          # 是否有上半部的部分
+     *   <item name="android:windowIsFloating">true</item>
+     *   <item name="android:windowIsTranslucent">true</item>
+     *   <item name="android:background">@android:color/transparent</item>       # 设置title，context背景
+     *   <item name="android:backgroundDimEnabled">true</item>
  *   </style>
  * 2、设置dialog动画
  * 1) 得到window
@@ -47,21 +49,36 @@ import android.widget.Toast;
  *  5) 设置宽、高、gravity
  *  6) addView(chileView,params)
  *
+ * 4、动画设置interpolator篡改器,调节动画播放速度
+ *   AccelerateDecelerateInterpolator 在动画开始与结束的地方速率改变比较慢，在中间的时候加速
+ *   AccelerateInterpolator  在动画开始的地方速率改变比较慢，然后开始加速
+ *   AnticipateInterpolator 开始的时候向后然后向前甩
+ *   AnticipateOvershootInterpolator 开始的时候向后然后向前甩一定值后返回最后的值
+ *   BounceInterpolator   动画结束的时候弹起
+ *   CycleInterpolator 动画循环播放特定的次数，速率改变沿着正弦曲线
+ *   DecelerateInterpolator 在动画开始的地方快然后慢
+ *   LinearInterpolator   以常量速率改变
+ *   OvershootInterpolator    向前甩一定值后再回到原来位置
  *
  */
 public class DialogActivity extends Activity {
 
+    private RelativeLayout viewRoot;
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog);
 
+        viewRoot = (RelativeLayout) findViewById(R.id.dialog_root);
+
         MyOnclickListener myOnclickListener = new MyOnclickListener();
         findViewById(R.id.btn1).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn2).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn3).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn4).setOnClickListener(myOnclickListener);
+        findViewById(R.id.btn5).setOnClickListener(myOnclickListener);
     }
 
     class MyOnclickListener implements View.OnClickListener {
@@ -89,6 +106,17 @@ public class DialogActivity extends Activity {
                     }
                 });
                 showFloatView(inflate);
+            } else if (v.getId() == R.id.btn5) {
+                if (popupWindow == null) {
+                    View inflate = View.inflate(DialogActivity.this, R.layout.live_my_course_save_guide, null);
+                    popupWindow = new PopupWindow(inflate, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                    popupWindow.setAnimationStyle(R.style.live_my_course_save_guide);
+                }
+                if (popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                } else {
+                    popupWindow.showAtLocation(viewRoot, (Gravity.LEFT | Gravity.TOP), 100, 300);
+                }
             }
         }
     }
@@ -131,6 +159,7 @@ public class DialogActivity extends Activity {
         private void setShowStyle(int x, int y) {
             Window window = getWindow();
             window.setWindowAnimations(R.style.WebViewDialogAnim);
+//            window.setWindowAnimations(R.style.live_my_course_save_guide);
             WindowManager.LayoutParams attributes = window.getAttributes();
             attributes.x = x;
             attributes.y = y;
