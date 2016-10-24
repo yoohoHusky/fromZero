@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import java.util.TreeMap;
 
 /**
  * Created by yooho on 16/10/12.
@@ -79,6 +84,15 @@ public class DialogActivity extends Activity {
         findViewById(R.id.btn3).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn4).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn5).setOnClickListener(myOnclickListener);
+
+        TreeMap<String, String> msp = new TreeMap<>();
+        String lastTitle = "aaaa";
+        msp.put("1", lastTitle);
+        lastTitle = "bbbbb";
+        msp.put("2", lastTitle);
+        Log.e("SS", msp.toString());
+        Log.e("SS", msp.containsKey("1") + "");
+        Log.e("SS", msp.containsKey("") + "");
     }
 
     class MyOnclickListener implements View.OnClickListener {
@@ -117,8 +131,16 @@ public class DialogActivity extends Activity {
                 } else {
                     popupWindow.showAtLocation(viewRoot, (Gravity.LEFT | Gravity.TOP), 100, 300);
                 }
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)    {
+        char keyValue = (char) event.getUnicodeChar();
+        System.out.println("我点了---->>>>"+keyValue);
+        return super.onKeyDown(keyCode, event);
     }
 
     private void showFloatView(View childView) {
