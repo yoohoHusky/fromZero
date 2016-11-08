@@ -38,3 +38,13 @@
     canvas.drawText()
     canvas.restore()
 ```
+
+5. 在自定义view的时候，其实很简单，只需要知道3步骤：
+  1. 测量——onMeasure()：决定View的大小
+  ```java
+    setMeasuredDimension(200, 800);  
+  ```
+  效果就是自定义视图的大小为200, 800，并且放入到ScrollView中，ScrollView会启作用，如果不使用setMeasuredDimension这个方法，那么ScrollView不会有作用。(即scroll无法正常展示)
+
+  2. 布局——onLayout()：决定View在ViewGroup中的位置
+  3. 绘制——onDraw()：如何绘制这个View。
