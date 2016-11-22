@@ -62,6 +62,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="仿墨迹天气" />
+            <Button
+                android:id="@+id/model_hide_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可隐藏titleView" />
+            <Button
+                android:id="@+id/model_expand_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可扩展listView" />
+            <Button
+                android:id="@+id/model_pinned_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="head固定listview" />
+            <Button
+                android:id="@+id/model_pinned_list2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="head固定listview2" />
+
 
         </LinearLayout>
     </ScrollView>

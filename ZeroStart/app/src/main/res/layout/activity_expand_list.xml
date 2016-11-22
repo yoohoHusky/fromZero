@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ExpandListView实验"
+            android:textSize="16sp"
+            android:layout_margin="5dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ExpandableListView
+            android:id="@+id/expand_expand_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ExpandableListView>
+    </RelativeLayout>
+</LinearLayout>

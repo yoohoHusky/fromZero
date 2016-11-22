@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
+import com.example.yooho.zerostart.tools.MyUtils;
+import com.example.yooho.zerostart.ui.view.listview.MyExpandListActivity;
+import com.example.yooho.zerostart.ui.view.hidetitle.HideTitleActivity;
 import com.example.yooho.zerostart.ui.view.icon.NumberIconActivity;
 import com.example.yooho.zerostart.ui.view.line.DynamicalLineActivity;
+import com.example.yooho.zerostart.ui.view.listview.PinnedListActivity;
+import com.example.yooho.zerostart.ui.view.listview.PinnedListActivity2;
 import com.example.yooho.zerostart.ui.view.weather.WeatherDemoActivity;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
@@ -32,7 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_num_icon).setOnClickListener(this);
         findViewById(R.id.model_dynamical_line).setOnClickListener(this);
         findViewById(R.id.model_weather).setOnClickListener(this);
+        findViewById(R.id.model_hide_title).setOnClickListener(this);
+        findViewById(R.id.model_expand_list).setOnClickListener(this);
+        findViewById(R.id.model_pinned_list).setOnClickListener(this);
+        findViewById(R.id.model_pinned_list2).setOnClickListener(this);
 
+
+        MyUtils.init(this);
 
         initWeChat();
     }
@@ -70,6 +81,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, DynamicalLineActivity.class));
         } else if (v.getId() == R.id.model_weather) {
             startActivity(new Intent(this, WeatherDemoActivity.class));
+        } else if (v.getId() == R.id.model_hide_title) {
+            startActivity(new Intent(this, HideTitleActivity.class));
+        } else if (v.getId() == R.id.model_expand_list) {
+            startActivity(new Intent(this, MyExpandListActivity.class));
+        } else if (v.getId() == R.id.model_pinned_list) {
+            startActivity(new Intent(this, PinnedListActivity.class));
+        } else if (v.getId() == R.id.model_pinned_list2) {
+            startActivity(new Intent(this, PinnedListActivity2.class));
         }
     }
 }

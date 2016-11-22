@@ -30,6 +30,10 @@
         <activity android:name=".ui.view.icon.NumberIconActivity"/>
         <activity android:name=".ui.view.line.DynamicalLineActivity"/>
         <activity android:name=".ui.view.weather.WeatherDemoActivity"/>
+        <activity android:name=".ui.view.hidetitle.HideTitleActivity"/>
+        <activity android:name=".ui.view.listview.MyExpandListActivity"/>
+        <activity android:name=".ui.view.listview.PinnedListActivity"/>
+        <activity android:name=".ui.view.listview.PinnedListActivity2"/>
 
     </application>
 
