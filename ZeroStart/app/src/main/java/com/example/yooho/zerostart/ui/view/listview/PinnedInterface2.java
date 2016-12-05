@@ -13,7 +13,7 @@ interface PinnedInterface2 {
     int PINNED_HEADER_PUSHED_UP = 2;
 
     /**
-     * 更新展示的headView
+     * 得到headView,给listview画用
      * @param position
      * @return
      */

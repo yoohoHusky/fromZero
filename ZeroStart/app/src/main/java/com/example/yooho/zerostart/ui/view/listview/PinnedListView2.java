@@ -17,6 +17,7 @@ public class PinnedListView2 extends ListView  {
     private PinnedInterface2 mAdapter;
     private int mHeaderViewWidth;
     private int mHeaderViewHeight;
+    private int recordState;
 
     public PinnedListView2(Context context) {
         super(context);
@@ -45,12 +46,23 @@ public class PinnedListView2 extends ListView  {
         }
     }
 
+    private void remeasureHeadView() {
+        mHeaderView = mAdapter.getHeadView(getFirstVisiblePosition());
+        requestLayout();
+    }
+
     private void onUpdateHeadLayout() {
         if (mAdapter == null) {
             return;
         }
         int firstPos = getFirstVisiblePosition();
         int headViewState = mAdapter.getHeadViewState(firstPos);
+        if (recordState != headViewState) {
+            Log.e("SS", "last " + recordState + "    new " + headViewState);
+            recordState = headViewState;
+            remeasureHeadView();
+        }
+
         if (mHeaderView == null) {
             return;
         }
@@ -91,6 +103,7 @@ public class PinnedListView2 extends ListView  {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.e("SS", "onMeasure");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (mHeaderView != null) {
             measureChild(mHeaderView, widthMeasureSpec, heightMeasureSpec);
@@ -101,11 +114,10 @@ public class PinnedListView2 extends ListView  {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
         Log.e("SS", "onLayout");
+        super.onLayout(changed, left, top, right, bottom);
         if (mHeaderView != null) {
             mHeaderView.layout(0, 0, mHeaderViewWidth, mHeaderViewHeight);
-            onUpdateHeadLayout();
         }
     }
 }

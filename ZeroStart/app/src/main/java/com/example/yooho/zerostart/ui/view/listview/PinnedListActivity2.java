@@ -25,6 +25,7 @@ public class PinnedListActivity2 extends FragmentActivity {
     private ArrayList<Contact> contactList;
     private int mItemHeight = 55;
     private int mPinnedHeight = 55;
+    private int stageNum = 10;
 
     private String[] strs = {"abc", "sakjdn", "sadjn", "gdq", "akjsbdjk", "adnjg", "ugnj", "siwg"};
 
@@ -43,7 +44,7 @@ public class PinnedListActivity2 extends FragmentActivity {
         contactList = new ArrayList<>();
         for (int i = 0; i < itemSize; i++) {
             Contact contact = new Contact(i, strs[i % strs.length] + "" + i);
-            if (i % 6 == 0 && i != 0) {
+            if (i % stageNum == 0 && i != 0) {
                 contact.isSection = true;
             } else {
                 contact.isSection = false;
@@ -70,10 +71,10 @@ public class PinnedListActivity2 extends FragmentActivity {
             mDatas = datas;
         }
 
-        @Override
-        public boolean areAllItemsEnabled() {
-            return false;
-        }
+//        @Override
+//        public boolean areAllItemsEnabled() {
+//            return false;
+//        }
 
         @Override
         public boolean isEnabled(int position) {
@@ -95,6 +96,7 @@ public class PinnedListActivity2 extends FragmentActivity {
             return mDatas.size();
         }
 
+        // 这里必须写成多种type,否则geiItemView中会造成container样子的混乱
         @Override
         public int getItemViewType(int position) {
             // 异常情况处理
@@ -148,9 +150,10 @@ public class PinnedListActivity2 extends FragmentActivity {
                     break;
 
                 case TYPE_CATEGORY_ITEM:
-                    if (null == convertView) {
-                        convertView = getHeadView(position);
-                    }
+//                    if (null == convertView) {
+                        // 这里注释掉container复用,是因为每个stageHeadView可能不一样,不能复用上一个
+                        convertView = getStageHeadView(position);
+//                    }
                     itemView = (TextView) convertView;
                     itemView.setText(data.sortLetter);
                     break;
@@ -159,24 +162,14 @@ public class PinnedListActivity2 extends FragmentActivity {
             return convertView;
         }
 
-
         @Override
         public View getHeadView(int position) {
-            TextView itemView = new TextView(PinnedListActivity2.this);
-            itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    mPinnedHeight));
-            itemView.setGravity(Gravity.CENTER_VERTICAL);
-            itemView.setBackgroundColor(Color.WHITE);
-            itemView.setTextSize(20);
-            itemView.setTextColor(Color.GRAY);
-            itemView.setBackgroundColor(Color.YELLOW);
-            itemView.setPadding(10, 0, 0, itemView.getPaddingBottom());
-            return itemView;
+            return getStageHeadView(position);
         }
 
         @Override
         public int getHeadViewState(int position) {
-            if (position < 6) {
+            if (position < stageNum) {
                 return PINNED_HEADER_GONE;
             }
 
@@ -197,10 +190,34 @@ public class PinnedListActivity2 extends FragmentActivity {
                 if (header instanceof TextView) {
                     TextView tv = (TextView)header;
                     tv.setText(mDatas.get(position).sortLetter);
-                    Log.e("SS", "" + ratio);
                     tv.setAlpha(ratio);
                 }
             }
         }
+    }
+
+    private View getStageHeadView(int position) {
+        TextView itemView = new TextView(PinnedListActivity2.this);
+        if (position/stageNum == 2) {
+            itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    108));
+            itemView.setGravity(Gravity.CENTER_VERTICAL);
+            itemView.setBackgroundColor(Color.WHITE);
+            itemView.setTextSize(20);
+            itemView.setTextColor(Color.GRAY);
+            itemView.setBackgroundColor(Color.GREEN);
+            itemView.setPadding(10, 0, 0, itemView.getPaddingBottom());
+        } else {
+            itemView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    mPinnedHeight));
+            itemView.setGravity(Gravity.CENTER_VERTICAL);
+            itemView.setBackgroundColor(Color.WHITE);
+            itemView.setTextSize(20);
+            itemView.setTextColor(Color.GRAY);
+            itemView.setBackgroundColor(Color.YELLOW);
+            itemView.setPadding(10, 0, 0, itemView.getPaddingBottom());
+        }
+
+        return itemView;
     }
 }
