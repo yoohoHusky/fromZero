@@ -44,6 +44,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="展示/隐藏pop(携带篡改器)"/>
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加chooseView选择"/>
 
     </LinearLayout>
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.yooho.zerostart;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,6 +15,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.example.yooho.zerostart.ui.activity.AddChooseViewActivity;
 
 import java.util.TreeMap;
 
@@ -84,6 +87,7 @@ public class DialogActivity extends Activity {
         findViewById(R.id.btn3).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn4).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn5).setOnClickListener(myOnclickListener);
+        findViewById(R.id.btn6).setOnClickListener(myOnclickListener);
 
         TreeMap<String, String> msp = new TreeMap<>();
         String lastTitle = "aaaa";
@@ -133,6 +137,9 @@ public class DialogActivity extends Activity {
                 }
 //                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+            } else if (v.getId() == R.id.btn6) {
+                Intent intent = new Intent(DialogActivity.this, AddChooseViewActivity.class);
+                startActivity(intent);
             }
         }
     }

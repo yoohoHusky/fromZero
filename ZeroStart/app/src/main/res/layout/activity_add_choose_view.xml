@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/add_view_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="弹出view"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/child_container_0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ffaaaa">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/test_btn0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test0"/>
+            <Button
+                android:id="@+id/test_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="test1"/>
+        </RelativeLayout>
+
+    </FrameLayout>
+    <RelativeLayout
+        android:id="@+id/child_container_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#aaaaff"
+        >
+    </RelativeLayout>
+
+
+</LinearLayout>

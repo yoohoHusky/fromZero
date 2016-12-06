@@ -34,6 +34,7 @@
         <activity android:name=".ui.view.listview.MyExpandListActivity"/>
         <activity android:name=".ui.view.listview.PinnedListActivity"/>
         <activity android:name=".ui.view.listview.PinnedListActivity2"/>
+        <activity android:name=".ui.activity.AddChooseViewActivity"/>
 
     </application>
 
