@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/dash_et"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="0"
+        android:inputType="number"/>
+    <Button
+        android:id="@+id/dash_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="计算"
+        android:layout_toRightOf="@id/dash_et"/>
+    <com.example.yooho.zerostart.ui.view.processbar.ZFBDashBoard
+        android:id="@+id/dash_board"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:background="#FFFF6347"
+        android:layout_below="@id/dash_et"
+        android:layout_marginTop="10dp"
+        />
+
+
+</RelativeLayout>

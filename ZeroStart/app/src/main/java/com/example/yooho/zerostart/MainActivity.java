@@ -13,6 +13,7 @@ import com.example.yooho.zerostart.ui.view.icon.NumberIconActivity;
 import com.example.yooho.zerostart.ui.view.line.DynamicalLineActivity;
 import com.example.yooho.zerostart.ui.view.listview.PinnedListActivity;
 import com.example.yooho.zerostart.ui.view.listview.PinnedListActivity2;
+import com.example.yooho.zerostart.ui.view.processbar.DashBoardActivity;
 import com.example.yooho.zerostart.ui.view.weather.WeatherDemoActivity;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_expand_list).setOnClickListener(this);
         findViewById(R.id.model_pinned_list).setOnClickListener(this);
         findViewById(R.id.model_pinned_list2).setOnClickListener(this);
-
+        findViewById(R.id.model_dashboard).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, PinnedListActivity.class));
         } else if (v.getId() == R.id.model_pinned_list2) {
             startActivity(new Intent(this, PinnedListActivity2.class));
+        } else if (v.getId() == R.id.model_dashboard) {
+            startActivity(new Intent(this, DashBoardActivity.class));
         }
     }
 }

@@ -36,6 +36,11 @@
         <activity android:name=".ui.view.listview.PinnedListActivity2"/>
         <activity android:name=".ui.activity.AddChooseViewActivity"/>
 
+        <activity android:name=".ui.BaseActivity"/>
+        <activity
+            android:name=".ui.view.processbar.DashBoardActivity"
+            />
+
     </application>
 
 </manifest>

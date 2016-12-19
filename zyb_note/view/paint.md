@@ -7,6 +7,7 @@
   dashLinePaint.setPathEffect(effect);
   dashLinePaint.setStrokeWidth(3);                                      // 设置宽度
   dashLinePaint.setAntiAlias(true);                                     // 设置抗锯齿
+  dashLinePaint.setDither(true);                                        // 设置防抖动
   dashLinePaint.setStyle(Paint.Style.STROKE);                           // 设置实心
 
   ```
@@ -41,5 +42,15 @@
         temperatureBarY - DisplayUtil.dip2px(getContext(), 4));
   drawable.draw(canvas);
 
+```
+5. 测量text的两种方法
+```java
+  String centerStr = “信用”；
+  canvas.drawText(centerStr, -paint3.measureText(centerStr)/2, 0, paint3);
 
+
+  String addStr = "信用" + evaluateList[i];
+  Rect rect = new Rect();
+  paint3.getTextBounds(addStr, 0, addStr.length(), rect);
+  canvas.drawText(addStr, -rect.width()/2, rect.height()/2 + 20, paint3);
 ```
