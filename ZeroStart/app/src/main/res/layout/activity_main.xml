@@ -87,6 +87,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="支付宝信用分的仪表盘" />
+            <Button
+                android:id="@+id/screen_shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="屏幕截图" />
+            <Button
+                android:id="@+id/model_toast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="toast的测试" />
+
 
 
         </LinearLayout>

@@ -18,6 +18,20 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+    <style name="TransparentDialog2" parent="@android:style/Theme.Dialog">
+        <item name="android:backgroundDimAmount">0.75</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
     <style name="WebViewDialogAnim" parent="@android:style/Animation" mce_bogus="1">
@@ -28,10 +42,28 @@
         <item name="android:windowEnterAnimation">@anim/webview_dialog_test_left</item>
         <item name="android:windowExitAnimation">@anim/webview_dialog_test_right</item>
     </style>
+    <style name="WebViewDialogAnim3" parent="@android:style/Animation" mce_bogus="1">
+        <!--<item name="android:windowEnterAnimation">@anim/webview_dialog_test_left</item>-->
+        <item name="android:windowExitAnimation">@anim/webview_dialog_test_right</item>
+    </style>
 
     <style name="live_my_course_save_guide">
         <item name="android:windowEnterAnimation">@anim/live_my_course_save_guide_show</item>
         <item name="android:windowExitAnimation">@anim/live_my_course_save_guide_dissmis</item>
+    </style>
+
+    <style name="AppTheme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <!--<item name="android:activityOpenEnterAnimation">@anim/push_left_in</item>-->
+        <!--<item name="android:activityOpenExitAnimation">@anim/push_left_out</item>-->
+        <!--<item name="android:activityCloseEnterAnimation">@anim/zoom_enter</item>-->
+        <item name="android:activityCloseExitAnimation">@anim/activity_zoom_exit</item>
     </style>
 
 </resources>

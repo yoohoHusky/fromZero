@@ -57,3 +57,21 @@
   - DecelerateInterpolator 在动画开始的地方快然后慢
   - LinearInterpolator   以常量速率改变
   - OvershootInterpolator    向前甩一定值后再回到原来位置
+
+  5. xml设置动画的代码
+  ```
+  <set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1000"
+    android:interpolator="@android:anim/bounce_interpolator"  >
+    <scale
+      android:fromXScale="1.0"
+      android:toXScale="1.0"
+      android:fromYScale="0.0"
+      android:toYScale="1.0"
+      android:pivotX="0"
+      android:pivotY="100%"
+      android:fillAfter="false"
+      android:duration="300"
+    />
+  </set>
+  ```

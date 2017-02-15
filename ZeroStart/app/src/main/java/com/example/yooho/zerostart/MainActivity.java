@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
 import com.example.yooho.zerostart.tools.MyUtils;
+import com.example.yooho.zerostart.ui.toast.ToastActivity;
 import com.example.yooho.zerostart.ui.view.listview.MyExpandListActivity;
 import com.example.yooho.zerostart.ui.view.hidetitle.HideTitleActivity;
 import com.example.yooho.zerostart.ui.view.icon.NumberIconActivity;
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_pinned_list).setOnClickListener(this);
         findViewById(R.id.model_pinned_list2).setOnClickListener(this);
         findViewById(R.id.model_dashboard).setOnClickListener(this);
+        findViewById(R.id.screen_shot).setOnClickListener(this);
+        findViewById(R.id.model_toast).setOnClickListener(this);
+
 
         MyUtils.init(this);
 
@@ -92,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, PinnedListActivity2.class));
         } else if (v.getId() == R.id.model_dashboard) {
             startActivity(new Intent(this, DashBoardActivity.class));
+        } else if (v.getId() == R.id.screen_shot) {
+            startActivity(new Intent(this, ScreenShotterAct.class));
+        } else if (v.getId() == R.id.model_toast) {
+            startActivity(new Intent(this, ToastActivity.class));
         }
     }
 }

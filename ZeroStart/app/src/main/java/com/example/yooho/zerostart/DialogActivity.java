@@ -5,6 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -12,8 +15,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yooho.zerostart.ui.activity.AddChooseViewActivity;
@@ -73,13 +80,24 @@ public class DialogActivity extends Activity {
 
     private RelativeLayout viewRoot;
     private PopupWindow popupWindow;
+    String str = "";
+    private Dialog mRankDialog;
+    private ListView mDialogPullList;
+    private RelativeLayout mDialogMineContianer;
+    private ImageView mDialogAvatar;
+    private TextView mDialogRankValue;
+    private TextView mDialogScoreValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog);
 
+        // 测试edit与toast的影响
+        initWindow();
         viewRoot = (RelativeLayout) findViewById(R.id.dialog_root);
+        String[] ls = str.split("l");
+        String l = ls[ls.length - 1];
 
         MyOnclickListener myOnclickListener = new MyOnclickListener();
         findViewById(R.id.btn1).setOnClickListener(myOnclickListener);
@@ -88,6 +106,26 @@ public class DialogActivity extends Activity {
         findViewById(R.id.btn4).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn5).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn6).setOnClickListener(myOnclickListener);
+        findViewById(R.id.btn7).setOnClickListener(myOnclickListener);
+        ((EditText)findViewById(R.id.btn8)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String ToastStr = "<font color='#2319DC'>"+ s + "  再按一次退出浮生绘"+"</font>";
+                Toast toast = Toast.makeText(DialogActivity.this, Html.fromHtml(ToastStr) , Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         TreeMap<String, String> msp = new TreeMap<>();
         String lastTitle = "aaaa";
@@ -97,6 +135,14 @@ public class DialogActivity extends Activity {
         Log.e("SS", msp.toString());
         Log.e("SS", msp.containsKey("1") + "");
         Log.e("SS", msp.containsKey("") + "");
+        String[] as = "".split("a");
+        Log.e("SS", as.length + "   " + as.toString());
+
+    }
+
+    private void initWindow() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     class MyOnclickListener implements View.OnClickListener {
@@ -109,6 +155,7 @@ public class DialogActivity extends Activity {
                 dialog.setContentView(inflate);
                 dialog.show();
             } else if (v.getId() == R.id.btn2) {
+//                mRankDialog.show();
                 MyDialog myDialog = new MyDialog(DialogActivity.this, R.style.TransparentDialog);
                 myDialog.showDialog(R.layout.dialog_course_detail_exit, 0, 0);
             } else if (v.getId() == R.id.btn3) {
@@ -140,6 +187,10 @@ public class DialogActivity extends Activity {
             } else if (v.getId() == R.id.btn6) {
                 Intent intent = new Intent(DialogActivity.this, AddChooseViewActivity.class);
                 startActivity(intent);
+            } else if (v.getId() == R.id.btn7) {
+                MyDialog3 myDialog = new MyDialog3(DialogActivity.this, R.style.TransparentDialog);
+                myDialog.setCancelable(true);
+                myDialog.showDialog(R.layout.dialog_course_detail_splash, 0, 0);
             }
         }
     }
@@ -228,4 +279,38 @@ public class DialogActivity extends Activity {
             attributes.gravity = Gravity.LEFT;
         }
     }
+
+    class MyDialog3 extends Dialog {
+        public MyDialog3(Context context) {
+            super(context);
+        }
+
+        public MyDialog3(Context context, int themeResId) {
+            super(context, themeResId);
+        }
+
+        protected MyDialog3(Context context, boolean cancelable, OnCancelListener cancelListener) {
+            super(context, cancelable, cancelListener);
+        }
+
+        public void showDialog(int layoutResId, int x, int y) {
+            setContentView(layoutResId);
+            setShowStyle(x, y);
+            setCancelable(true);
+            show();
+        }
+
+        private void setShowStyle(int x, int y) {
+            Window window = getWindow();
+            window.setWindowAnimations(R.style.WebViewDialogAnim3);
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
+            attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
+            attributes.x = 0;
+            attributes.y = 0;
+//            attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
+            attributes.gravity = Gravity.LEFT;
+        }
+    }
+
 }

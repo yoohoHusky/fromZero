@@ -6,12 +6,22 @@
 5. LiveContainerFragment/TitleFragment/BaseFragment
 6. LiveMainPagerAdapter（与学科相关联的item就是page每一页，但是不负责写学科）
 7. LiveCourseFragment（上面那个需要new这个出来，专题课实在这里设置进adapter，数据都在这里面）
-8. LiveZhuanListAdapter（是复用率最高的课程的items）（其他的都用head等view实现）
+    mBanContainer(班课的LinearLayout)(live_main_season_course_item)   
+    LiveCommonListAdapter（专题课的listView）（live_item_choose_private_course）
+
+8. LiveZhuanListAdapter
+   LiveCommonListAdapter（是复用率最高的课程的items）（其他的都用head等view实现）
 9. CourseDetailActivity（课程详情页面）(webview)
+   ChooseCourseActivity（ChooseCourseFragment）(班课列表的页面)
+   LiveCommonListAdapter
+
 10. PayBindActivity/RegistrationActivity/LivePayActivity(绑定手机/免费课/付费课)
 11. LessonDetailListActivity(课程详情页)
 12. 课程详情页面 page中包含的 LessonDetailFragment
 13. LiveActivity（直播页面）
+
+14. shopCartBindActivity（购物车页面）
+    ShopCartBindAdapter(live_course_shop_cart_item_layout)
 
 
 ##### InitActivity

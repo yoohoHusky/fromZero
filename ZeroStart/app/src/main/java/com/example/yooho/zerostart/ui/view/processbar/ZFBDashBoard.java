@@ -1,6 +1,5 @@
 package com.example.yooho.zerostart.ui.view.processbar;
 
-import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -14,9 +13,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 
 import com.example.yooho.zerostart.tools.DisplayUtil;
 
