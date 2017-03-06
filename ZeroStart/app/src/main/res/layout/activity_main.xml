@@ -97,7 +97,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="toast的测试" />
-
+            <Button
+                android:id="@+id/model_seek_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="seekAct页面" />
+            <Button
+                android:id="@+id/model_system_tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="系统工具" />
 
 
         </LinearLayout>

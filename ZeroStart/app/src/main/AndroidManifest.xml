@@ -46,6 +46,8 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation|locale"
             android:theme="@style/AppTheme.Transparent" />
         <activity android:name=".ui.toast.ToastActivity"/>
+        <activity android:name=".ui.VerticalSeekbarActivity"/>
+        <activity android:name=".system.SystemTestActivity"/>
     </application>
 
 </manifest>

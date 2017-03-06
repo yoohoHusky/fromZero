@@ -3,11 +3,16 @@ package com.example.yooho.zerostart;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
+import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
 import com.example.yooho.zerostart.tools.MyUtils;
+import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
 import com.example.yooho.zerostart.ui.toast.ToastActivity;
 import com.example.yooho.zerostart.ui.view.listview.MyExpandListActivity;
 import com.example.yooho.zerostart.ui.view.hidetitle.HideTitleActivity;
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String WX_APP_ID = "";
     private IWXAPI wxapi;
+    private View inflate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_dashboard).setOnClickListener(this);
         findViewById(R.id.screen_shot).setOnClickListener(this);
         findViewById(R.id.model_toast).setOnClickListener(this);
-
+        findViewById(R.id.model_seek_bar).setOnClickListener(this);
+        findViewById(R.id.model_system_tools).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -101,6 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, ScreenShotterAct.class));
         } else if (v.getId() == R.id.model_toast) {
             startActivity(new Intent(this, ToastActivity.class));
+        } else if (v.getId() == R.id.model_seek_bar) {
+            startActivity(new Intent(this, VerticalSeekbarActivity.class));
+        } else if (v.getId() == R.id.model_system_tools) {
+            startActivity(new Intent(this, SystemTestActivity.class));
         }
     }
 }
