@@ -10,7 +10,9 @@ import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,7 +32,7 @@ public class FlexibleAssembledToast {
     private View toastView;
     private WindowManager wm;
     private WindowManager.LayoutParams params;
-    TranslateAnimation mTranslateAnimation;
+    AnimationSet mTranslateAnimation;
     WeakReference<Context> mContextRef;
 
     private TextView mPreTv;
@@ -88,10 +90,18 @@ public class FlexibleAssembledToast {
     }
 
     private void initTranslateAnimation() {
-        mTranslateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0f, Animation.RELATIVE_TO_PARENT, -0.5f, Animation.RELATIVE_TO_PARENT, 0f, Animation.RELATIVE_TO_PARENT, -0.7f);
+        mTranslateAnimation = new AnimationSet(false);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 3.0f, 1.0f, 3.0f);
+
+        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_PARENT, 0f, Animation.RELATIVE_TO_PARENT, -0.5f, Animation.RELATIVE_TO_PARENT, 0f, Animation.RELATIVE_TO_PARENT, -0.7f);
+        mTranslateAnimation.addAnimation(scaleAnimation);
+        mTranslateAnimation.addAnimation(translateAnimation);
+
+
         mTranslateAnimation.setDuration(COLOR_VIEW_MOVE_DURATION);
         mTranslateAnimation.setInterpolator(new DecelerateInterpolator());
         mTranslateAnimation.setFillAfter(true);
+
     }
 
     private void initWindowManager() {

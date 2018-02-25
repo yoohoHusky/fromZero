@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="demoVM"
+            type="com.example.yooho.zerostart.mvvm.viewmodel.DemoViewModel"/>
+        <variable
+            name="btnClk"
+            type="com.example.yooho.zerostart.mvvm.viewmodel.MVVMHandler"/>
+        <variable
+            name="event"
+            type="com.example.yooho.zerostart.mvvm.viewmodel.ModelEvent"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <EditText
+                addTextChangedListener="@{event.watcher1}"
+                android:id="@+id/ed_mvvm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="请输入内容"
+                />
+            <TextView
+                android:id="@+id/tv_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ed_mvvm"
+                android:layout_marginLeft="20dp"
+                android:text="@{demoVM.firstName}"
+                android:layout_alignParentBottom="true"/>
+            <TextView
+                android:id="@+id/tv_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_1_1"
+                android:layout_marginLeft="20dp"
+                android:text="dddd"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <EditText
+                android:id="@+id/ed_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="请输入内容"/>
+            <TextView
+                android:id="@+id/tv_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ed_2"
+                android:layout_marginLeft="20dp"
+                android:text="@{demoVM.lastName}"
+                android:layout_alignParentBottom="true"/>
+            <TextView
+                android:id="@+id/tv_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_2_1"
+                android:layout_marginLeft="20dp"
+                android:text="dddd"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_mvvm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="click"
+                android:onClick="@{btnClk::btnClick}"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="click2"
+                android:onClick="changeName"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="click3"
+                android:onClick="changeName2"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_mvvm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asdd\nsdsd"/>
+
+    </LinearLayout>
+</layout>
+
+

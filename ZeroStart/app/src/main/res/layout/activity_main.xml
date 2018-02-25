@@ -107,8 +107,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="系统工具" />
-
-
+            <Button
+                android:id="@+id/model_mvvm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mvvm" />
+            <Button
+                android:id="@+id/model_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RecyclerView" />
+            <Button
+                android:id="@+id/model_volley"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volley" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

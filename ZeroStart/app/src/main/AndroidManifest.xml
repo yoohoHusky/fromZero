@@ -48,6 +48,9 @@
         <activity android:name=".ui.toast.ToastActivity"/>
         <activity android:name=".ui.VerticalSeekbarActivity"/>
         <activity android:name=".system.SystemTestActivity"/>
+        <activity android:name=".mvvm.activity.MVVMActivity"/>
+        <activity android:name=".ui.activity.RecycleViewActivity"/>
+        <activity android:name=".ui.activity.VolleyActivity"/>
     </application>
 
 </manifest>

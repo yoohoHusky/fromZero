@@ -8,11 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
+import com.example.yooho.zerostart.mvvm.viewmodel.DemoViewModel;
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
 import com.example.yooho.zerostart.tools.MyUtils;
 import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
+import com.example.yooho.zerostart.ui.activity.RecycleViewActivity;
+import com.example.yooho.zerostart.ui.activity.VolleyActivity;
 import com.example.yooho.zerostart.ui.toast.ToastActivity;
 import com.example.yooho.zerostart.ui.view.listview.MyExpandListActivity;
 import com.example.yooho.zerostart.ui.view.hidetitle.HideTitleActivity;
@@ -55,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_toast).setOnClickListener(this);
         findViewById(R.id.model_seek_bar).setOnClickListener(this);
         findViewById(R.id.model_system_tools).setOnClickListener(this);
+        findViewById(R.id.model_mvvm).setOnClickListener(this);
+        findViewById(R.id.model_recycler_view).setOnClickListener(this);
+        findViewById(R.id.model_volley).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -112,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, VerticalSeekbarActivity.class));
         } else if (v.getId() == R.id.model_system_tools) {
             startActivity(new Intent(this, SystemTestActivity.class));
+        } else if (v.getId() == R.id.model_mvvm) {
+            startActivity(new Intent(this, MVVMActivity.class));
+        } else if (v.getId() == R.id.model_recycler_view) {
+            startActivity(new Intent(this, RecycleViewActivity.class));
+        } else if (v.getId() == R.id.model_volley) {
+            startActivity(new Intent(this, VolleyActivity.class));
         }
     }
 }
