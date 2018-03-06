@@ -5,30 +5,19 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/volley_btn1"
+        android:id="@+id/okhttp_btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="btn1"/>
     <Button
-        android:id="@+id/volley_btn2"
+        android:id="@+id/okhttp_btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="btn2"/>
     <Button
-        android:id="@+id/volley_btn3"
+        android:id="@+id/okhttp_btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="btn3"/>
-    <Button
-        android:id="@+id/volley_btn4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="btn4"/>
-    <ImageView
-        android:id="@+id/iv_svg"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/svg_demo_connetctor"
-        android:background="#22000000"/>
 
 </LinearLayout>

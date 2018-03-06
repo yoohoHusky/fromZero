@@ -6,11 +6,21 @@ android {
 
     defaultConfig {
         applicationId "com.example.yooho.zerostart"
-        minSdkVersion 16
+        minSdkVersion 22
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        ndk {
+            moduleName "MineJni"
+            ldLibs "log", "z", "m"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
     }
+
+
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,7 +31,11 @@ android {
         dataBinding {
             enabled = true
         }
+        defaultConfig {
+            vectorDrawables.useSupportLibrary = true
+        }
     }
+
 }
 
 dependencies {
@@ -29,4 +43,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
+
+//    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+//    compile 'com.squareup.okio:okio:1.11.0'
 }

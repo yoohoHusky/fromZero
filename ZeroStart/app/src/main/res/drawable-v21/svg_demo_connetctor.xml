@@ -1,0 +1,13 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/svg_demo_src">
+    <target
+        android:name="path1"
+        android:animation="@animator/svg_demo_animator1">
+    </target>
+
+    <target
+        android:name="path2"
+        android:animation="@animator/svg_demo_animator2">
+    </target>
+</animated-vector>

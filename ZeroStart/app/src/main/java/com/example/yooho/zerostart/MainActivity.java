@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
 import com.example.yooho.zerostart.mvvm.viewmodel.DemoViewModel;
+import com.example.yooho.zerostart.net.okhttp.OkhttpActivity;
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_mvvm).setOnClickListener(this);
         findViewById(R.id.model_recycler_view).setOnClickListener(this);
         findViewById(R.id.model_volley).setOnClickListener(this);
+        findViewById(R.id.model_okhttp).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -125,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, RecycleViewActivity.class));
         } else if (v.getId() == R.id.model_volley) {
             startActivity(new Intent(this, VolleyActivity.class));
+        } else if (v.getId() == R.id.model_okhttp) {
+            startActivity(new Intent(this, OkhttpActivity.class));
         }
     }
 }

@@ -122,6 +122,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Volley" />
+            <Button
+                android:id="@+id/model_okhttp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Okhttp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
