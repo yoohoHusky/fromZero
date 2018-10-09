@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yooho.husky.myapplication.MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btn_net_httpclient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="httpClient"/>
+            <Button
+                android:id="@+id/btn_net_urlconnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="httpURLConnection"/>
+            <Button
+                android:id="@+id/btn_net_volley_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="volley_string"/>
+            <Button
+                android:id="@+id/btn_net_okthhp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="okhttp_host"/>
+        </LinearLayout>
+</ScrollView>

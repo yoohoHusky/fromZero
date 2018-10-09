@@ -1,15 +1,13 @@
 package com.example.yooho.zerostart;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.yooho.zerostart.jnicode.JniProxy;
 import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
-import com.example.yooho.zerostart.mvvm.viewmodel.DemoViewModel;
 import com.example.yooho.zerostart.net.okhttp.OkhttpActivity;
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.system.SystemTestActivity;
@@ -19,10 +17,10 @@ import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
 import com.example.yooho.zerostart.ui.activity.RecycleViewActivity;
 import com.example.yooho.zerostart.ui.activity.VolleyActivity;
 import com.example.yooho.zerostart.ui.toast.ToastActivity;
-import com.example.yooho.zerostart.ui.view.listview.MyExpandListActivity;
 import com.example.yooho.zerostart.ui.view.hidetitle.HideTitleActivity;
 import com.example.yooho.zerostart.ui.view.icon.NumberIconActivity;
 import com.example.yooho.zerostart.ui.view.line.DynamicalLineActivity;
+import com.example.yooho.zerostart.ui.view.listview.MyExpandListActivity;
 import com.example.yooho.zerostart.ui.view.listview.PinnedListActivity;
 import com.example.yooho.zerostart.ui.view.listview.PinnedListActivity2;
 import com.example.yooho.zerostart.ui.view.processbar.DashBoardActivity;
@@ -64,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_recycler_view).setOnClickListener(this);
         findViewById(R.id.model_volley).setOnClickListener(this);
         findViewById(R.id.model_okhttp).setOnClickListener(this);
+        findViewById(R.id.model_jni).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -129,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, VolleyActivity.class));
         } else if (v.getId() == R.id.model_okhttp) {
             startActivity(new Intent(this, OkhttpActivity.class));
+        } else if (v.getId() == R.id.model_jni) {
+            String result = JniProxy.getNativeString("输入内容");
+            Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         }
     }
 }

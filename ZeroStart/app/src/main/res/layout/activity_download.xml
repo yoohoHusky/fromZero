@@ -28,6 +28,10 @@
             app:glitterStopColor="#ff9800"
             android:layout_marginTop="10dp"
             />
+        <com.example.yooho.zerostart.ui.view.processbar.MyGlitterProcessBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
 
 
     </LinearLayout>

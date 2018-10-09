@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/rl_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/ed_score"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_score_show"
+            android:layout_toRightOf="@id/ed_score"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示"/>
+
+    </RelativeLayout>
+    <com.example.yooho.husky.myapplication.ui.demo.SimpleLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_control">
+        <com.example.yooho.husky.myapplication.ui.demo.ZFBBoard
+            android:id="@+id/zfb_border"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mColor="#FF8888"
+            app:mText="自定义的text"
+            />
+    </com.example.yooho.husky.myapplication.ui.demo.SimpleLayout>
+
+
+</RelativeLayout>

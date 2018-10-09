@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="mText" format="string"/>
+    <attr name="mTextSize" format="dimension"/>
+    <color name="mColor" />
+
+    <declare-styleable name="ZFBBoard">
+        <attr name="mText"/>
+        <attr name="mColor"/>
+    </declare-styleable>
+</resources>

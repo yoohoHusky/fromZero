@@ -126,6 +126,7 @@ public class GlitterProcessBar extends View implements Runnable{
         int height = mTextBount.height();
         int left = (getMeasuredWidth() - width) / 2;
         int top = (getMeasuredHeight() + height) / 2;
+        Log.e("SSS", getMeasuredHeight() + "  ::  " + height);
         float processLeft = mProcess / MAX_PROCESS * getMeasuredWidth();
 
         if (processLeft > left) {

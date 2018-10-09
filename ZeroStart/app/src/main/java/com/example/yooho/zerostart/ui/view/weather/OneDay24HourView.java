@@ -84,7 +84,7 @@ public class OneDay24HourView extends View {
 
     private void init() {
         mHeight = 500;
-        mWidth = MARGIN_LEFT_ITEM + ITEM_SIZE * ITEM_WIDTH + MARGIN_RIGHT_ITEM;
+        mWidth = MARGIN_LEFT_ITEM + ITEM_SIZE * ITEM_WIDTH + MARGIN_RIGHT_ITEM + 500;
         mBottomTextHeight = WINDY_TEXT_HEIGHT;
 
         mWindyList = new ArrayList<>();

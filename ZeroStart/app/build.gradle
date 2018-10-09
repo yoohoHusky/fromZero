@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.yooho.zerostart"
-        minSdkVersion 22
+        minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -18,8 +18,11 @@ android {
         }
     }
 
-
-
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
+        }
+    }
 
     buildTypes {
         release {
@@ -35,7 +38,6 @@ android {
             vectorDrawables.useSupportLibrary = true
         }
     }
-
 }
 
 dependencies {
@@ -46,4 +48,5 @@ dependencies {
 
 //    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 //    compile 'com.squareup.okio:okio:1.11.0'
+    compile 'com.android.support.constraint:constraint-layout:1.1.3'
 }
