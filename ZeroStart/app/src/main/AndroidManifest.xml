@@ -70,6 +70,8 @@
         <activity android:name=".ui.theme.ThemeActivity2"/>
         <activity android:name=".black.theme_factory.ThemeFactoryActivity"/>
         <activity android:name=".net.retrofit.RetrofitActivity"/>
+        <activity android:name=".ui.activity.ConstraintActivity"/>
+        <activity android:name=".ui.activity.AsyncValueActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">
