@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 28
     buildToolsVersion '26.0.2'
 
     defaultConfig {
@@ -44,10 +44,16 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.2.0'
+
+    compile 'com.android.support:support-v4:27.1.1'
+    compile 'com.android.support:appcompat-v7:28.0.0'
+
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile project(path: ':mylibrary')
+
+    compile 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
     compile 'com.android.support.constraint:constraint-layout:1.1.3'
 }

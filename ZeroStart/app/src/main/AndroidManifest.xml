@@ -52,6 +52,7 @@
         <activity android:name=".ui.activity.RecycleViewActivity"/>
         <activity android:name=".ui.activity.VolleyActivity"/>
         <activity android:name=".net.okhttp.OkhttpActivity"/>
+        <activity android:name=".image.ImageActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">

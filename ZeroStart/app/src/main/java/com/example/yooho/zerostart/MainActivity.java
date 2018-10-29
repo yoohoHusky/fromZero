@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.demotest.mylibrary.MavenTester;
+import com.example.yooho.zerostart.image.ImageActivity;
 import com.example.yooho.zerostart.jnicode.JniProxy;
 import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
 import com.example.yooho.zerostart.net.okhttp.OkhttpActivity;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_volley).setOnClickListener(this);
         findViewById(R.id.model_okhttp).setOnClickListener(this);
         findViewById(R.id.model_jni).setOnClickListener(this);
+        findViewById(R.id.model_image).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -187,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.model_jni) {
             String result = JniProxy.getNativeString("输入内容");
             Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+        } else if (v.getId() == R.id.model_image) {
+            startActivity(new Intent(this, ImageActivity.class));
         }
     }
 }

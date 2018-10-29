@@ -92,7 +92,7 @@ public class MyGlitterProcessBar extends View {
 
 
         textPaint.setColor(Color.BLUE);
-        canvas.save(Canvas.CLIP_SAVE_FLAG);
+        canvas.save();
         canvas.clipRect(mWidth/5, 0, mWidth * 2/5 + 10, getMeasuredHeight());
         canvas.drawText(str, mWidth/5, (getMeasuredHeight() + bound.height())/2, textPaint);
         canvas.restore();
@@ -105,7 +105,7 @@ public class MyGlitterProcessBar extends View {
 
 
 //        processCanvas.drawColor(Color.RED);
-        processCanvas.save(Canvas.CLIP_SAVE_FLAG);
+        processCanvas.save();
         processCanvas.clipRect(0, 0, mWidth*3/4, mHeight*2/3);
         processCanvas.drawColor(Color.YELLOW);
         processCanvas.restore();

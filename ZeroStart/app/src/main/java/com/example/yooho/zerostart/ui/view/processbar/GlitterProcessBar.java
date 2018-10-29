@@ -132,7 +132,7 @@ public class GlitterProcessBar extends View implements Runnable{
         if (processLeft > left) {
             mProcessImagePaint.setColor(Color.WHITE);
             float right = Math.min(processLeft, left + width * 1.1f);
-            canvas.save(Canvas.CLIP_SAVE_FLAG);
+            canvas.save();
             canvas.clipRect(left, 0, right, getMeasuredHeight());
             canvas.drawText(changeText,left ,top, mProcessImagePaint);
             canvas.restore();
@@ -157,7 +157,7 @@ public class GlitterProcessBar extends View implements Runnable{
         mProcessImagePaint.setStrokeWidth(0);
         mProcessImagePaint.setColor(mLoadingColor);
 
-        mProcessCanvas.save(Canvas.CLIP_SAVE_FLAG);
+        mProcessCanvas.save();
         mProcessCanvas.clipRect(0, 0, mProcess*getMeasuredWidth()/MAX_PROCESS, getHeight());
         mProcessCanvas.drawColor(mLoadingColor);
         mProcessCanvas.restore();
