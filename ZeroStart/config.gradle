@@ -1,0 +1,28 @@
+ext.deps = [:]
+
+def local_maven = [:]
+local_maven.URL = 'file:///Users/megayooho/Downloads/work_maven/Android'
+local_maven.groupId = 'com.mega.test.demo'
+local_maven.artifactId = 'test-one'
+local_maven.version = '0.0.1'
+
+
+def private_maven = [:]
+private_maven.URL = 'http://104.168.149.5:8081/repository/husky-host/'
+private_maven.groupId = 'com.mega.test.demo'
+private_maven.artifactId = 'example'
+private_maven.version = '0.0.4'
+private_maven.user = 'HuskyYooho'
+private_maven.password = '000000'
+
+
+def jcenter_maven = [:]
+jcenter_maven.user = 'megayooho'
+jcenter_maven.key = 'fbbf5bea545fda9a8d266740241d5d5058dfeab7'
+
+
+
+
+
+deps.out_maven = private_maven
+deps.jcenter_maven = jcenter_maven

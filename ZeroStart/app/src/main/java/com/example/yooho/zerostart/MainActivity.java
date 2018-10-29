@@ -1,11 +1,15 @@
 package com.example.yooho.zerostart;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.demotest.mylibrary.MavenTester;
 import com.example.yooho.zerostart.jnicode.JniProxy;
 import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
 import com.example.yooho.zerostart.net.okhttp.OkhttpActivity;
@@ -30,6 +34,10 @@ import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -67,6 +75,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MyUtils.init(this);
 
         initWeChat();
+        MavenTester.getStr();
+        String str = "Na";
+        str += "OK";
+
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-256");
+            byte[] bytes = "SSS".getBytes();
+            sha.update(bytes);
+            byte[] digest = sha.digest();
+            Log.e("SS", bytes2Hex(digest));
+
+
+            Log.e("SS", getStr(digest));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getStr(byte[] b) {
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < b.length; i ++){
+            sb.append(b[i]);
+            Log.e("SS", b[i] + "");
+        }
+        return sb.toString();
+    }
+
+    public static String bytes2Hex(byte[] bts) {
+        String des = "";
+        String tmp = null;
+        for (int i = 0; i < bts.length; i++) {
+            tmp = (Integer.toHexString(bts[i] & 0xFF));
+            if (tmp.length() == 1) {
+                des += "0";
+            }
+            des += tmp;
+        }
+        return des;
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityManager myAM=(ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+        ArrayList<ActivityManager.RunningServiceInfo> runningServices = (ArrayList<ActivityManager.RunningServiceInfo>) myAM.getRunningServices(200);
+        for(int i = 0 ; i<runningServices.size();i++)//循环枚举对比
+        {
+            Log.e("Demo", "i=" + i + "   " + runningServices.get(i).service.getClassName());
+        }
     }
 
     private void initWeChat() {
@@ -77,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.model_download) {
-            startActivity(new Intent(this, DownloadModelActivity.class));
+//            startActivity(new Intent(this, DownloadModelActivity.class));
         } else if (v.getId() == R.id.model_dialog) {
             startActivity(new Intent(this, DialogActivity.class));
         } else if (v.getId() == R.id.model_text_view) {

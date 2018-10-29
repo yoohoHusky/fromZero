@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.2.0'
+
+}
+
+
+//apply plugin: 'maven'
+//
+//
+//uploadArchives {
+//    repositories.mavenDeployer {
+//        repository(url: deps.out_maven.URL) {
+//            authentication(userName: deps.out_maven.user, password: deps.out_maven.password)
+//        }
+//        pom.groupId = deps.out_maven.groupId
+//        pom.artifactId = deps.out_maven.artifactId
+//        pom.version = deps.out_maven.version
+//        pom.packaging = 'aar'
+//    }
+//}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+
+group = "com.example.demotest.mylibrary" // 指定groupId，artifactId直接读取为model的名字
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = deps.jcenter_maven.user
+    key = deps.jcenter_maven.key
+    configurations = ['archives']
+    pkg {
+        repo = "maven"                  // 发布到Maven库
+        name = "test_store5"            // jcenter上的项目名
+        websiteUrl = "www.husky.com"    // 没啥用
+        version '1.0.3'
+        vcsUrl = 'www.husky.com'        // 没啥用
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
