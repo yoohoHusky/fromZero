@@ -7,12 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.yooho.zerostart.R;
 
 public class ImageActivity  extends AppCompatActivity {
     private ImageView mIvImage;
+    private ImageView mIvImage2;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -21,7 +21,22 @@ public class ImageActivity  extends AppCompatActivity {
 
         setContentView(R.layout.activity_image_demo);
         mIvImage = (ImageView) findViewById(R.id.iv_image);
-        RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE);
-        Glide.with(this).load(R.drawable.little_girl).apply(options).into(mIvImage);
+        mIvImage2 = (ImageView) findViewById(R.id.iv_image2);
+
+
+        RequestOptions options1 = new RequestOptions();
+        options1.placeholder(R.drawable.abcs).error(R.drawable.flicker)
+                .circleCrop()
+                .skipMemoryCache(true);
+
+        int picId = R.drawable.ez;
+        Glide.with(this)
+                .load(picId)
+                .apply(options1)
+                .into(mIvImage);
+
+        Glide.with(this).
+                load(picId)
+                .into(mIvImage2) ;
     }
 }

@@ -53,6 +53,7 @@
         <activity android:name=".ui.activity.VolleyActivity"/>
         <activity android:name=".net.okhttp.OkhttpActivity"/>
         <activity android:name=".image.ImageActivity"/>
+        <activity android:name=".databing.DatabingActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">

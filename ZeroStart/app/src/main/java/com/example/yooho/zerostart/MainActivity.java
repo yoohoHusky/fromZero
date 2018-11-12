@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.demotest.mylibrary.MavenTester;
+import com.example.yooho.zerostart.databing.DatabingActivity;
 import com.example.yooho.zerostart.image.ImageActivity;
 import com.example.yooho.zerostart.jnicode.JniProxy;
 import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
@@ -39,6 +40,8 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import io.reactivex.Observable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -73,26 +76,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_okhttp).setOnClickListener(this);
         findViewById(R.id.model_jni).setOnClickListener(this);
         findViewById(R.id.model_image).setOnClickListener(this);
+        findViewById(R.id.model_data_Binding).setOnClickListener(this);
 
         MyUtils.init(this);
 
         initWeChat();
-        MavenTester.getStr();
-        String str = "Na";
-        str += "OK";
 
-        try {
-            MessageDigest sha = MessageDigest.getInstance("SHA-256");
-            byte[] bytes = "SSS".getBytes();
-            sha.update(bytes);
-            byte[] digest = sha.digest();
-            Log.e("SS", bytes2Hex(digest));
-
-
-            Log.e("SS", getStr(digest));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        Observable.just(2, 3, 4, 5)
+//                .contains(3)
+                .isEmpty()
+                .subscribe(item -> Log.e("SS", item.toString()));
     }
 
     private String getStr(byte[] b) {
@@ -191,6 +184,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         } else if (v.getId() == R.id.model_image) {
             startActivity(new Intent(this, ImageActivity.class));
+        } else if (v.getId() == R.id.model_data_Binding) {
+            startActivity(new Intent(this, DatabingActivity.class));
         }
     }
 }
