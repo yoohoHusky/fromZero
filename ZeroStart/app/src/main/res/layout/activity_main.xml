@@ -144,6 +144,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="展示data_binding" />
+            <Button
+                android:id="@+id/model_svg_seek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="svg_seek" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

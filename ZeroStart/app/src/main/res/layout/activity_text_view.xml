@@ -45,5 +45,9 @@
             app:span_text_view_key_color2="@android:color/holo_green_light"
             app:span_text_view_key_color3="@android:color/holo_blue_light"
             />
+        <com.example.demotest.mylibrary.ui.WordColorChange
+            android:id="@+id/tv_word_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </RelativeLayout>

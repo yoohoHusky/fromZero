@@ -96,14 +96,10 @@ public class MyGlitterProcessBar extends View {
         canvas.clipRect(mWidth/5, 0, mWidth * 2/5 + 10, getMeasuredHeight());
         canvas.drawText(str, mWidth/5, (getMeasuredHeight() + bound.height())/2, textPaint);
         canvas.restore();
-
-
     }
 
     @SuppressLint("WrongConstant")
     private void drawProcess(Canvas canvas) {
-
-
 //        processCanvas.drawColor(Color.RED);
         processCanvas.save();
         processCanvas.clipRect(0, 0, mWidth*3/4, mHeight*2/3);

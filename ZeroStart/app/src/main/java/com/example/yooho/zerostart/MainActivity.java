@@ -1,7 +1,5 @@
 package com.example.yooho.zerostart;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.demotest.mylibrary.MavenTester;
+import com.example.demotest.mylibrary.ui.SVG.SVGPathObject;
+import com.example.yooho.zerostart.SVG.SVGControlActivity;
 import com.example.yooho.zerostart.databing.DatabingActivity;
 import com.example.yooho.zerostart.image.ImageActivity;
 import com.example.yooho.zerostart.jnicode.JniProxy;
@@ -36,12 +35,6 @@ import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-
-import io.reactivex.Observable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -77,15 +70,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_jni).setOnClickListener(this);
         findViewById(R.id.model_image).setOnClickListener(this);
         findViewById(R.id.model_data_Binding).setOnClickListener(this);
+        findViewById(R.id.model_svg_seek).setOnClickListener(this);
 
         MyUtils.init(this);
 
         initWeChat();
 
-        Observable.just(2, 3, 4, 5)
-//                .contains(3)
-                .isEmpty()
-                .subscribe(item -> Log.e("SS", item.toString()));
+
     }
 
     private String getStr(byte[] b) {
@@ -110,16 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return des;
     }
 
-    @Override
-    public void onBackPressed() {
-        ActivityManager myAM=(ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
-        ArrayList<ActivityManager.RunningServiceInfo> runningServices = (ArrayList<ActivityManager.RunningServiceInfo>) myAM.getRunningServices(200);
-        for(int i = 0 ; i<runningServices.size();i++)//循环枚举对比
-        {
-            Log.e("Demo", "i=" + i + "   " + runningServices.get(i).service.getClassName());
-        }
-    }
-
     private void initWeChat() {
         wxapi = WXAPIFactory.createWXAPI(this, WX_APP_ID, true);
         wxapi.registerApp(WX_APP_ID);
@@ -128,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.model_download) {
-//            startActivity(new Intent(this, DownloadModelActivity.class));
+            startActivity(new Intent(this, DownloadModelActivity.class));
         } else if (v.getId() == R.id.model_dialog) {
             startActivity(new Intent(this, DialogActivity.class));
         } else if (v.getId() == R.id.model_text_view) {
@@ -186,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, ImageActivity.class));
         } else if (v.getId() == R.id.model_data_Binding) {
             startActivity(new Intent(this, DatabingActivity.class));
+        } else if (v.getId() == R.id.model_svg_seek) {
+            startActivity(new Intent(this, SVGControlActivity.class));
         }
     }
 }

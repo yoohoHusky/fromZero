@@ -137,7 +137,6 @@ public class GlitterProcessBar extends View implements Runnable{
             canvas.drawText(changeText,left ,top, mProcessImagePaint);
             canvas.restore();
         }
-
     }
 
     private void drawProcessText(Canvas canvas) {

@@ -25,7 +25,7 @@ android {
 
     sourceSets {
         main {
-            jniLibs.srcDirs = ['libs', 'src/main/jniLibs']
+            java.srcDirs = ['src/main/java', 'src/main/aidl']
         }
     }
 
@@ -41,6 +41,10 @@ android {
     }
     dataBinding {
         enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 
     defaultConfig {

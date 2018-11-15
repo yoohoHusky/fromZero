@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SVGControlImageView">
+        <attr name="fillColor" format="color|reference"/>
+        <attr name="viewPortWidth" format="integer|reference"/>
+        <attr name="viewPortHeight" format="integer|reference"/>
+        <attr name="pathStr_1" format="string|reference"/>
+        <attr name="pathStr_2" format="string|reference"/>
+        <attr name="pathStr_3" format="string|reference"/>
+        <attr name="pathStr_4" format="string|reference"/>
+        <attr name="animDuration" format="integer|reference" />
+    </declare-styleable>
+</resources>

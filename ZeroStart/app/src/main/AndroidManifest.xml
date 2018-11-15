@@ -54,6 +54,10 @@
         <activity android:name=".net.okhttp.OkhttpActivity"/>
         <activity android:name=".image.ImageActivity"/>
         <activity android:name=".databing.DatabingActivity"/>
+        <activity android:name=".ui.view.icon.EmptyActivity"/>
+        <activity android:name=".ui.view.icon.EmptyShareActivity"/>
+        <activity android:name=".ui.view.icon.VectorActivity"/>
+        <activity android:name=".SVG.SVGControlActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">

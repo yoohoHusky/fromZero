@@ -12,6 +12,7 @@ import android.text.style.ForegroundColorSpan;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.demotest.mylibrary.ui.WordColorChange;
 import com.example.yooho.zerostart.ui.view.textview.KeyTextViewSpan;
 
 /**
@@ -22,6 +23,7 @@ public class TextViewActivity extends Activity {
     EditText edText;
     EditText edKey;
     KeyTextViewSpan spanTV;
+    WordColorChange wc;
 
     String textInfo;
     String keyInfo;
@@ -33,8 +35,11 @@ public class TextViewActivity extends Activity {
         edText = (EditText) findViewById(R.id.ed_text);
         edKey = (EditText) findViewById(R.id.ed_key);
         spanTV = (KeyTextViewSpan) findViewById(R.id.tv_div_span);
+        wc = findViewById(R.id.tv_word_color);
+
         edText.addTextChangedListener(new TextEditChangeListener());
         edKey.addTextChangedListener(new KeyEditChangeListener());
+        wc.setColorText();
 
         handleOriginTextView();
 
