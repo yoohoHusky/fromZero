@@ -1,19 +1,22 @@
 package com.example.yooho.zerostart;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.demotest.mylibrary.ui.SVG.SVGPathObject;
 import com.example.yooho.zerostart.SVG.SVGControlActivity;
+import com.example.yooho.zerostart.black.activity_factory.ActivityFactoryAct;
+import com.example.yooho.zerostart.black.theme_factory.ThemeFactoryActivity;
 import com.example.yooho.zerostart.databing.DatabingActivity;
 import com.example.yooho.zerostart.image.ImageActivity;
 import com.example.yooho.zerostart.jnicode.JniProxy;
 import com.example.yooho.zerostart.mvvm.activity.MVVMActivity;
 import com.example.yooho.zerostart.net.okhttp.OkhttpActivity;
+import com.example.yooho.zerostart.net.retrofit.RetrofitActivity;
+import com.example.yooho.zerostart.net.rxjava.RxJavaDemoActivity;
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
@@ -21,7 +24,11 @@ import com.example.yooho.zerostart.tools.MyUtils;
 import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
 import com.example.yooho.zerostart.ui.activity.RecycleViewActivity;
 import com.example.yooho.zerostart.ui.activity.VolleyActivity;
+import com.example.yooho.zerostart.ui.theme.ThemeActivity;
+import com.example.yooho.zerostart.ui.theme.ThemeActivity2;
 import com.example.yooho.zerostart.ui.toast.ToastActivity;
+import com.example.yooho.zerostart.ui.view.bitmap.blur.BlurMaskActivity;
+import com.example.yooho.zerostart.ui.view.bitmap.splite.SplitBitmapActivity;
 import com.example.yooho.zerostart.ui.view.hidetitle.HideTitleActivity;
 import com.example.yooho.zerostart.ui.view.icon.NumberIconActivity;
 import com.example.yooho.zerostart.ui.view.line.DynamicalLineActivity;
@@ -36,7 +43,9 @@ import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import java.io.File;
+
+public class MainActivity extends Activity implements View.OnClickListener{
 
     private static final String WX_APP_ID = "";
     private IWXAPI wxapi;
@@ -71,10 +80,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.model_image).setOnClickListener(this);
         findViewById(R.id.model_data_Binding).setOnClickListener(this);
         findViewById(R.id.model_svg_seek).setOnClickListener(this);
+        findViewById(R.id.model_blur_mask).setOnClickListener(this);
+        findViewById(R.id.model_rxjava).setOnClickListener(this);
+        findViewById(R.id.model_split_bitmap).setOnClickListener(this);
+        findViewById(R.id.model_activity_factory).setOnClickListener(this);
+        findViewById(R.id.model_activity_theme).setOnClickListener(this);
+        findViewById(R.id.model_activity_theme2).setOnClickListener(this);
+        findViewById(R.id.model_activity_theme_factory).setOnClickListener(this);
+        findViewById(R.id.model_activity_retrofit).setOnClickListener(this);
 
         MyUtils.init(this);
 
         initWeChat();
+
+        File str = getExternalFilesDir("");
+        Log.e("SS", str.toString());
 
 
     }
@@ -169,6 +189,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, DatabingActivity.class));
         } else if (v.getId() == R.id.model_svg_seek) {
             startActivity(new Intent(this, SVGControlActivity.class));
+        } else if (v.getId() == R.id.model_blur_mask) {
+            startActivity(new Intent(this, BlurMaskActivity.class));
+        } else if (v.getId() == R.id.model_rxjava) {
+            startActivity(new Intent(this, RxJavaDemoActivity.class));
+        } else if (v.getId() == R.id.model_split_bitmap) {
+            startActivity(new Intent(this, SplitBitmapActivity.class));
+        } else if (v.getId() == R.id.model_activity_factory) {
+            startActivity(new Intent(this, ActivityFactoryAct.class));
+        } else if (v.getId() == R.id.model_activity_theme) {
+            startActivity(new Intent(this, ThemeActivity.class));
+        } else if (v.getId() == R.id.model_activity_theme2) {
+            startActivity(new Intent(this, ThemeActivity2.class));
+        } else if (v.getId() == R.id.model_activity_theme_factory) {
+            startActivity(new Intent(this, ThemeFactoryActivity.class));
+        } else if (v.getId() == R.id.model_activity_retrofit) {
+            startActivity(new Intent(this, RetrofitActivity.class));
         }
     }
 }

@@ -149,6 +149,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="svg_seek" />
+            <Button
+                android:id="@+id/model_blur_mask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="blur_mask" />
+            <Button
+                android:id="@+id/model_rxjava"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="rxjava" />
+            <Button
+                android:id="@+id/model_split_bitmap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="splitBitmap" />
+            <Button
+                android:id="@+id/model_activity_factory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="activity_factory" />
+            <Button
+                android:id="@+id/model_activity_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="activity_theme" />
+            <Button
+                android:id="@+id/model_activity_theme2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="activity_theme2" />
+            <Button
+                android:id="@+id/model_activity_theme_factory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="activity_theme_factory" />
+            <Button
+                android:id="@+id/model_activity_retrofit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="model_activity_retrofit" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

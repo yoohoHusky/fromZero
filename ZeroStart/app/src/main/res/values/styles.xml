@@ -35,15 +35,17 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="WebViewDialogAnim" parent="@android:style/Animation" mce_bogus="1">
+    <style name="WebViewDialogAnim" mce_bogus="1" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/webview_dialog_enter</item>
         <item name="android:windowExitAnimation">@anim/webview_dialog_exit</item>
     </style>
-    <style name="WebViewDialogAnim2" parent="@android:style/Animation" mce_bogus="1">
+
+    <style name="WebViewDialogAnim2" mce_bogus="1" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/webview_dialog_test_left</item>
         <item name="android:windowExitAnimation">@anim/webview_dialog_test_right</item>
     </style>
-    <style name="WebViewDialogAnim3" parent="@android:style/Animation" mce_bogus="1">
+
+    <style name="WebViewDialogAnim3" mce_bogus="1" parent="@android:style/Animation">
         <!--<item name="android:windowEnterAnimation">@anim/webview_dialog_test_left</item>-->
         <item name="android:windowExitAnimation">@anim/webview_dialog_test_right</item>
     </style>
@@ -67,5 +69,21 @@
         <item name="android:activityCloseExitAnimation">@anim/activity_zoom_exit</item>
     </style>
 
+    <style name="DemoTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="custom_attr_color_1">@color/colorPrimary</item>
+        <item name="custom_attr_color_2">@color/colorPrimary</item>
+    </style>
+
+    <style name="DemoTheme.Day">
+        <item name="custom_attr_color_1">@color/colorAccent</item>
+        <item name="custom_attr_color_2">@color/colorAccent</item>
+    </style>
+
+    <style name="DemoTheme.Night">
+        <item name="custom_attr_color_1">@color/index_enter_text_pressed</item>
+        <item name="custom_attr_color_2">@color/index_enter_text_pressed</item>
+    </style>
 
 </resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/custom_attr_color_1">
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="textView_1"
+        android:background="?attr/custom_attr_color_2"/>
+
+    <Button
+        android:id="@+id/btn_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button_day" />
+
+    <Button
+        android:id="@+id/btn_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="button_night" />
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"/>
+    <Button
+        android:id="@+id/create_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create_text"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_theme_demo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

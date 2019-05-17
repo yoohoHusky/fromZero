@@ -52,6 +52,62 @@ android {
     }
 }
 
+final def TARGET_SKIN_DIR = '../skin-package/'
+final def SAMPLE_NAME = 'Sample.apk'
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'assembleRelease') {
+        println("=====================assembleRelease.doLast.begin.=========================")
+
+        def dir = new File(TARGET_SKIN_DIR)
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+
+        def f = new File(TARGET_SKIN_DIR + SAMPLE_NAME)
+        if (f.exists()) {
+            f.delete()
+        }
+
+        copy {
+            from('build/outputs/apk')
+            into(TARGET_SKIN_DIR)
+            include '*.apk'
+            exclude '**/*-unaligned.apk'
+            rename('android-skin-loader-sample-release.apk', SAMPLE_NAME)
+        }
+
+        println("=====================assembleRelease.doLast success.=========================")
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'assembleDebug') {
+        println("=====================assembleDebug.doLast.begin.=========================")
+
+        def dir = new File(TARGET_SKIN_DIR)
+        if (!dir.exists()) {
+            dir.mkdirs()
+        }
+
+        def f = new File(TARGET_SKIN_DIR + SAMPLE_NAME)
+        if (f.exists()) {
+            f.delete()
+        }
+
+        copy {
+            from('build/outputs/apk')
+            into(TARGET_SKIN_DIR)
+            include '*.apk'
+            exclude '**/*-unaligned.apk'
+            rename('android-skin-loader-sample-debug.apk', SAMPLE_NAME)
+        }
+
+        println("=====================assembleDebug.doLast success.=========================")
+    }
+}
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -67,5 +123,14 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
 
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'io.reactivex.rxjava2:rxjava:2.0.4'
+    implementation 'io.reactivex:rxjava:1.0.14'
+    implementation 'io.reactivex:rxandroid:1.0.1'
+
+
+    // retrofit
+    compile "com.squareup.retrofit2:retrofit:2.1.0"
+    compile "com.squareup.retrofit2:converter-gson:2.1.0"
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
+
 }

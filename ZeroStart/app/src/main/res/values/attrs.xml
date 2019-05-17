@@ -21,5 +21,8 @@
         <attr name="span_text_view_key_color3" format="color|reference"/>
     </declare-styleable>
 
+    <attr name="custom_attr_color_1" format="color|reference"/>
+    <attr name="custom_attr_color_2" format="color|reference"/>
+
 
 </resources>

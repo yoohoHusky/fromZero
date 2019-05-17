@@ -8,8 +8,12 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
 
     <application
+        android:name="com.example.yooho.zerostart.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -58,6 +62,14 @@
         <activity android:name=".ui.view.icon.EmptyShareActivity"/>
         <activity android:name=".ui.view.icon.VectorActivity"/>
         <activity android:name=".SVG.SVGControlActivity"/>
+        <activity android:name=".ui.view.bitmap.blur.BlurMaskActivity"/>
+        <activity android:name=".net.rxjava.RxJavaDemoActivity"/>
+        <activity android:name=".ui.view.bitmap.splite.SplitBitmapActivity"/>
+        <activity android:name=".black.activity_factory.ActivityFactoryAct"/>
+        <activity android:name=".ui.theme.ThemeActivity"/>
+        <activity android:name=".ui.theme.ThemeActivity2"/>
+        <activity android:name=".black.theme_factory.ThemeFactoryActivity"/>
+        <activity android:name=".net.retrofit.RetrofitActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">

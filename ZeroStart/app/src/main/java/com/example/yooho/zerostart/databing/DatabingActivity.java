@@ -6,12 +6,9 @@ import android.databinding.ObservableList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.example.yooho.zerostart.R;
 import com.example.yooho.zerostart.databinding.ActivityDatabingBinding;
-
-import io.reactivex.Observable;
 
 public class DatabingActivity extends AppCompatActivity {
 
