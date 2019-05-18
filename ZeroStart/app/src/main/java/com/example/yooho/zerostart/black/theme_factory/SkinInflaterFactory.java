@@ -1,6 +1,7 @@
 package com.example.yooho.zerostart.black.theme_factory;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,12 +46,15 @@ public class SkinInflaterFactory implements LayoutInflater.Factory {
                 String resEntryName = context.getResources().getResourceEntryName(resId);// 后面自己重新获取:colorPrimary
                 String resName = context.getResources().getResourceName(resId);         // 不知道啥区别:com.example.yooho.zerostart:color/colorPrimary
                 String pkgName = context.getResources().getResourcePackageName(resId);  // 真没用到:com.example.yooho.zerostart
-                Log.e("SS", "resType : " + resType
-                        + "\nresName : " + resName
+                Log.e("SS", "attrName : " + attrName
+                        + "\nattrValue : " + attrValue
+                        + "\nresId : " + resId
                         + "\nresEntryName : " + resEntryName
+                        + "\nresName : " + resName
+                        + "\nresType : " + resType
                         + "\npkgName : " + pkgName);
 
-                int proxyColor = SkinManager.getInstance().getColor(resId);
+//                int proxyColor = SkinManager.getInstance().getColor(resId);
                 viewList.add(new ViewObject(view, resId));
             }
         }
@@ -104,8 +108,11 @@ public class SkinInflaterFactory implements LayoutInflater.Factory {
     public void updateViewList() {
         if (viewList == null) return;
         for (ViewObject obj : viewList) {
-            int proxyColor = SkinManager.getInstance().getColor(obj.resId);
-            obj.view.setBackgroundColor(proxyColor);
+            Drawable proxyD = SkinManager.getInstance().getdrawable(obj.resId);
+//            int proxyColor = SkinManager.getInstance().getColor(obj.resId);
+
+            obj.view.setBackground(proxyD);
+//            obj.view.setBackgroundColor(proxyColor);
         }
     }
 }

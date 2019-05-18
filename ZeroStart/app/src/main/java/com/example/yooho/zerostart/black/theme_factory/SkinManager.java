@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -134,6 +135,23 @@ public class SkinManager {
             pathColor = originColor;
         }
         return pathColor;
+    }
+
+    public Drawable getdrawable(int resId) {
+
+        Drawable originD = context.getResources().getDrawable(resId);
+        if (proxyResource == null) return originD;
+
+
+        String resEntryName = context.getResources().getResourceEntryName(resId);
+        int patchResId = proxyResource.getIdentifier(resEntryName, "drawable", pkgName);
+        Drawable pathD = null;
+        try {
+            pathD = proxyResource.getDrawable(patchResId);
+        } catch (Exception e) {
+            pathD = originD;
+        }
+        return pathD;
     }
 
     interface FactoryListener {

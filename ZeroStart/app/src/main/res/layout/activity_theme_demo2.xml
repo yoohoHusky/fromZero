@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skip="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_show"
@@ -17,18 +17,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="button_day"
-        android:background="@color/colorPrimary" />
+        android:background="@drawable/ez"
+        skip:enable="true"/>
 
     <Button
         android:id="@+id/btn_night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="button_night" />
+        android:text="button_night"
+        android:background="@drawable/abcs"
+        skip:enable="true"/>
     <EditText
         android:id="@+id/et_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="200dp"/>
+        android:minWidth="200dp"
+        skip:enable="true"/>
     <Button
         android:id="@+id/create_data"
         android:layout_width="wrap_content"
