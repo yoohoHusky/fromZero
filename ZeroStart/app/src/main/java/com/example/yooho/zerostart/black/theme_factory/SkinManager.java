@@ -1,17 +1,29 @@
 package com.example.yooho.zerostart.black.theme_factory;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.net.URI;
 
 public class SkinManager {
 
@@ -137,6 +149,42 @@ public class SkinManager {
         return pathColor;
     }
 
+    public Uri getUriBitmap(int resId) {
+        if (true) return null;
+        if (proxyResource == null) return null;
+        String entryName = context.getResources().getResourceEntryName(resId);
+        String dirPath = Environment.getExternalStorageDirectory() + File.separator + "webp" + File.separator;
+        int patchResId = proxyResource.getIdentifier(entryName, "drawable", pkgName );
+        String webpName = dirPath + entryName + ".webp";
+        File webpFile = new File(webpName);
+
+        Uri resultUri;
+        if (!webpFile.exists()) {
+            InputStream is = proxyResource.openRawResource(patchResId);
+            byte[] b = new byte[1024];
+            FileOutputStream fos = null;
+            int length;
+            try {
+                Log.e("SS", "Create   ,,,,,,,,");
+                fos = new FileOutputStream(webpFile);
+                while ((length = is.read(b)) > 0) {
+                    fos.write(b, 0, length);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    is.close();
+                    if (fos != null) fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        resultUri = Uri.fromFile(webpFile);
+        return resultUri;
+    }
+
     public Drawable getdrawable(int resId) {
 
         Drawable originD = context.getResources().getDrawable(resId);
@@ -154,7 +202,80 @@ public class SkinManager {
         return pathD;
     }
 
+    public Bitmap getBitmap(int resId, int width, int height) {
+        if (resId == 0) return null;
+
+        Bitmap resultDrawable;
+        if (proxyResource != null) {
+            try {
+                String resEntryName = context.getResources().getResourceEntryName(resId);
+                int patchResId = proxyResource.getIdentifier(resEntryName, "drawable", pkgName);
+//                resultDrawable = mProxyResource.getDrawable(patchResId);
+                resultDrawable = decodeSampledBitmapFromResource(proxyResource, patchResId, width, height);
+                Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), resultDrawable, null,null));
+                Uri uri_1 = Uri.parse("android.resource://" + pkgName + "/drawable/abcs.png");
+                Log.e("SS", "uri_1     ---   " + uri_1);
+                Log.e("SS", "Uri     ---   " + uri);
+                if (resultDrawable == null) {
+                    resultDrawable = decodeSampledBitmapFromResource(context.getResources(), resId, width, height);
+                    Uri uri2 = Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(), resultDrawable, null,null));
+                    Log.e("SS", "Uri2     ---   " + uri2);
+                }
+            } catch (Exception e) {
+                resultDrawable = decodeSampledBitmapFromResource(context.getResources(), resId, width, height);
+                Log.e("SS", "getProxyDrawable() : ," + e.toString());
+            }
+        } else {
+            resultDrawable = decodeSampledBitmapFromResource(context.getResources(), resId, width, height);
+        }
+        return resultDrawable;
+    }
+
     interface FactoryListener {
         void updateAct();
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
+        // First decode with inJustDecodeBounds=true to check dimensions
+        if (reqWidth == 0 || reqHeight == 0) {
+            return BitmapFactory.decodeResource(res, resId);
+        }
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        if (reqWidth == 0 || reqHeight == 0) {
+            options.inSampleSize = 1;
+        } else {
+            options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        }
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        if (reqWidth == 0 || reqHeight == 0) {
+            return 1;
+        }
+
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+
+
+        if (height > reqHeight || width > reqWidth) {
+            //计算图片高度和我们需要高度的最接近比例值
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            //宽度比例值
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            //取比例值中的较大值作为inSampleSize
+            inSampleSize = heightRatio > widthRatio ? heightRatio : widthRatio;
+        }
+        return inSampleSize;
     }
 }

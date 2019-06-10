@@ -5,42 +5,82 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="textView_1"
-        />
-
-    <Button
-        android:id="@+id/btn_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button_day"
-        android:background="@drawable/ez"
-        skip:enable="true"/>
-
-    <Button
-        android:id="@+id/btn_night"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="button_night"
-        android:background="@drawable/abcs"
-        skip:enable="true"/>
-    <EditText
-        android:id="@+id/et_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="200dp"
-        skip:enable="true"/>
-    <Button
-        android:id="@+id/create_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="create_text"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_theme_demo"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="textView_1" />
+
+            <Button
+                android:id="@+id/btn_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ez"
+                android:text="button_day"
+                skip:enable="true" />
+
+            <Button
+                android:id="@+id/btn_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/abcs"
+                android:text="button_night"
+                skip:enable="true" />
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="200dp"
+                skip:enable="true" />
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="create_text" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/drawee_1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="visible"
+                android:background="#4400ff"/>
+
+            <ImageView
+                android:id="@+id/iv_1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/index_enter_mine_pressed" />
+
+            <ImageView
+                android:id="@+id/iv_2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/index_enter_mine_pressed" />
+
+            <ImageView
+                android:id="@+id/iv_3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/index_enter_mine_pressed" />
+
+            <ImageView
+                android:id="@+id/iv_4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/index_enter_mine_pressed" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

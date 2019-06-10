@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.yooho.zerostart.R;
 
 public class ImageActivity  extends AppCompatActivity {
@@ -24,19 +22,19 @@ public class ImageActivity  extends AppCompatActivity {
         mIvImage2 = (ImageView) findViewById(R.id.iv_image2);
 
 
-        RequestOptions options1 = new RequestOptions();
-        options1.placeholder(R.drawable.abcs).error(R.drawable.flicker)
-                .circleCrop()
-                .skipMemoryCache(true);
-
-        int picId = R.drawable.ez;
-        Glide.with(this)
-                .load(picId)
-                .apply(options1)
-                .into(mIvImage);
-
-        Glide.with(this).
-                load(picId)
-                .into(mIvImage2) ;
+//        RequestOptions options1 = new RequestOptions();
+//        options1.placeholder(R.drawable.abcs).error(R.drawable.flicker)
+//                .circleCrop()
+//                .skipMemoryCache(true);
+//
+//        int picId = R.drawable.ez;
+//        Glide.with(this)
+//                .load(picId)
+//                .apply(options1)
+//                .into(mIvImage);
+//
+//        Glide.with(this).
+//                load(picId)
+//                .into(mIvImage2) ;
     }
 }
