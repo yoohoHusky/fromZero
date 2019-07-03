@@ -5,18 +5,18 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.sdbean.werewolf.R;
-import com.sdbean.werewolf.global.GlobalSourceProvider;
-import com.sdbean.werewolf.global.frame.SourceInflateFactory;
-import com.sdbean.werewolf.global.misc.SkinMapHandler;
-import com.sdbean.werewolf.global.model.SkinBean;
-import com.sdbean.werewolf.global.privatebean.GlobalRefreshBean;
-import com.sdbean.werewolf.global.privatebean.SourceAttrModel;
-import com.sdbean.werewolf.global.tools.SkinSpHelper;
+import com.example.yooho.zerostart.R;
+import com.example.yooho.zerostart.system.global.GlobalSourceProvider;
+import com.example.yooho.zerostart.system.global.frame.SourceInflateFactory;
+import com.example.yooho.zerostart.system.global.misc.SkinMapHandler;
+import com.example.yooho.zerostart.system.global.model.SkinBean;
+import com.example.yooho.zerostart.system.global.privatebean.GlobalRefreshBean;
+import com.example.yooho.zerostart.system.global.privatebean.SourceAttrModel;
+import com.example.yooho.zerostart.system.global.tools.SkinSpHelper;
 
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_SP_KEY_CREATE_TIME;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_INDIA;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_JAPAN;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_SP_KEY_CREATE_TIME;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_INDIA;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_JAPAN;
 
 public class SourceManager {
 
@@ -53,7 +53,7 @@ public class SourceManager {
         mSkinMapHandler = new SkinMapHandler(context);
 
         // 真正的开启实现
-        if (!mSkinMapHandler.loadRecordSkin()) Toast.makeText(context, GlobalSourceProvider.getString(R.string.global_load_record_error), Toast.LENGTH_SHORT).show();
+        if (!mSkinMapHandler.loadRecordSkin()) Toast.makeText(context, "加载资源包失败", Toast.LENGTH_SHORT).show();
     }
 
     public Context getContext() {

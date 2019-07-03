@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import static com.sdbean.werewolf.global.misc.SkinConstant.GLOBAL_SP_NAME_SPACE;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.GLOBAL_SP_NAME_SPACE;
 
 public class SkinSpHelper {
 

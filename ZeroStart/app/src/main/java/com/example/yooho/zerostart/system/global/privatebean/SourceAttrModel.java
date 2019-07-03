@@ -5,10 +5,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sdbean.werewolf.global.GlobalSourceHelper;
-import com.sdbean.werewolf.global.GlobalSourceProvider;
-import com.sdbean.werewolf.global.core.SourceManager;
-import com.sdbean.werewolf.global.misc.SkinConstant;
+import com.example.yooho.zerostart.system.global.GlobalSourceHelper;
+import com.example.yooho.zerostart.system.global.GlobalSourceProvider;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.misc.SkinConstant;
 
 public class SourceAttrModel {
     View mView;

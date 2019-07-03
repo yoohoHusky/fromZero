@@ -1,8 +1,8 @@
 package com.example.yooho.zerostart.system.global.model;
 
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_CHINA_DEFAULT;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_JAPAN;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_OTHER;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_CHINA_DEFAULT;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_JAPAN;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_OTHER;
 
 public class SkinBean {
 

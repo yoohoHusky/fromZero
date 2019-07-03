@@ -4,7 +4,7 @@ package com.example.yooho.zerostart.system.global;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
-import com.sdbean.werewolf.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
 
 public class GlobalSourceProvider {
 

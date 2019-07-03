@@ -12,12 +12,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.yooho.zerostart.system.global.GlobalSourceProvider;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.frame.GlobalBitmapTransformation;
+import com.example.yooho.zerostart.system.global.privatebean.GlobalRefreshBean;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.sdbean.werewolf.global.GlobalSourceProvider;
-import com.sdbean.werewolf.global.core.SourceManager;
-import com.sdbean.werewolf.global.frame.GlobalBitmapTransformation;
-import com.sdbean.werewolf.global.privatebean.GlobalRefreshBean;
 
 import rx.functions.Action1;
 

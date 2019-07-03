@@ -14,10 +14,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.sdbean.werewolf.R;
-import com.sdbean.werewolf.global.GlobalSourceProvider;
-import com.sdbean.werewolf.global.misc.SkinConstant;
-import com.sdbean.werewolf.global.tools.GlobalTools;
+import com.example.yooho.zerostart.system.global.misc.SkinConstant;
+import com.example.yooho.zerostart.system.global.tools.GlobalTools;
 
 import java.io.File;
 import java.io.InputStream;
@@ -51,7 +49,7 @@ public class SourceProvider {
             if (zipFile.exists()) {
                 GlobalTools.unzip(zipPath, zipFile.getParent());
             } else {
-                Toast.makeText(mContext.getApplicationContext(), "" + GlobalSourceProvider.getString(R.string.global_script_name_2_3226) + "" + patchPath + "" + GlobalSourceProvider.getString(R.string.global_script_name_2_3225) + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext.getApplicationContext(), "skin file path : " + patchPath + ", 路径无法获得指定的资源包, 已切换回默认资源", Toast.LENGTH_SHORT).show();
                 Log.e(TAG, "skin file path : " + patchPath + ", 路径无法获得指定的资源包, 已切换回默认资源");
                 SourceManager.getInstance().changeSkinSource(0);
                 return;

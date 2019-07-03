@@ -5,12 +5,12 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.sdbean.werewolf.global.core.SourceManager;
-import com.sdbean.werewolf.global.privatebean.SourceAttrModel;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.privatebean.SourceAttrModel;
 
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_ATTR_ENABLE;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_ATTR_REFRESH_SELF;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_NAME_SPACE;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_ATTR_ENABLE;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_ATTR_REFRESH_SELF;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_NAME_SPACE;
 
 public class SourceInflateFactory implements LayoutInflater.Factory {
 

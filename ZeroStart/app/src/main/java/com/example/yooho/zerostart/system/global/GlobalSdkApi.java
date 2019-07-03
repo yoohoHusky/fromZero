@@ -3,8 +3,8 @@ package com.example.yooho.zerostart.system.global;
 import android.app.Activity;
 import android.content.Context;
 
-import com.sdbean.werewolf.global.core.SourceManager;
-import com.sdbean.werewolf.global.model.SkinBean;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.model.SkinBean;
 
 /**
  * 将打好的apk，改名为japan，将japan压缩成japan.skin

@@ -3,8 +3,8 @@ package com.example.yooho.zerostart.system.global.privatebean;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.sdbean.werewolf.global.core.SourceManager;
-import com.sdbean.werewolf.global.misc.GlobalSourceShower;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.misc.GlobalSourceShower;
 
 import rx.functions.Action1;
 

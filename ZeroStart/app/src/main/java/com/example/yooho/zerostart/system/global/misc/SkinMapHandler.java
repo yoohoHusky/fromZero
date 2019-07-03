@@ -4,23 +4,23 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.sdbean.werewolf.global.core.SourceManager;
-import com.sdbean.werewolf.global.model.SkinBean;
-import com.sdbean.werewolf.global.tools.SkinSpHelper;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.model.SkinBean;
+import com.example.yooho.zerostart.system.global.tools.SkinSpHelper;
 
 import java.io.File;
 
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_DIR_INDIA;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_DIR_JAPAN;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_DIR_OTHER;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_FILE_INDIA_NAME;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_FILE_JAPAN_NAME;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_SP_KEY_VERSION_INFO;
-import static com.sdbean.werewolf.global.misc.SkinConstant.SKIN_VERSION_INFO_SPLIT_STR;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_CHINA_DEFAULT;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_INDIA;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_JAPAN;
-import static com.sdbean.werewolf.global.misc.SkinConstant.TYPE_OTHER;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_DIR_INDIA;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_DIR_JAPAN;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_DIR_OTHER;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_FILE_INDIA_NAME;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_FILE_JAPAN_NAME;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_SP_KEY_VERSION_INFO;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.SKIN_VERSION_INFO_SPLIT_STR;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_CHINA_DEFAULT;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_INDIA;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_JAPAN;
+import static com.example.yooho.zerostart.system.global.misc.SkinConstant.TYPE_OTHER;
 
 public class SkinMapHandler {
 

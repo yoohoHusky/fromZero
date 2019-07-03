@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
-import com.sdbean.werewolf.global.GlobalSourceProvider;
-import com.sdbean.werewolf.global.core.SourceManager;
+import com.example.yooho.zerostart.system.global.GlobalSourceProvider;
+import com.example.yooho.zerostart.system.global.core.SourceManager;
 
 public class GlobalBitmapTransformation extends BitmapTransformation {
     private final int mResId;

@@ -4,8 +4,8 @@ import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.yooho.zerostart.system.global.misc.GlobalSourceShower;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.sdbean.werewolf.global.misc.GlobalSourceShower;
 
 import rx.functions.Action1;
 
