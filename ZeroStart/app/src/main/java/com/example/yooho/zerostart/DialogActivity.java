@@ -203,8 +203,9 @@ public class DialogActivity extends Activity {
     private void showFloatView(View childView) {
         WindowManager wm = (WindowManager)getApplicationContext().getSystemService(WINDOW_SERVICE);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+//        LayoutParams.TYPE_TOAST or TYPE_APPLICATION_PANEL
 //      params.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;   //如果设置为
-        params.type = WindowManager.LayoutParams.TYPE_PHONE; //
+        params.type = WindowManager.LayoutParams.TYPE_TOAST; //
         params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;

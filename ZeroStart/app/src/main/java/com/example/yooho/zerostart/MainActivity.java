@@ -22,6 +22,7 @@ import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
 import com.example.yooho.zerostart.tools.MyUtils;
 import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
+import com.example.yooho.zerostart.ui.activity.AnimateListActivity;
 import com.example.yooho.zerostart.ui.activity.RecycleViewActivity;
 import com.example.yooho.zerostart.ui.activity.VolleyActivity;
 import com.example.yooho.zerostart.ui.theme.ThemeActivity;
@@ -88,6 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         findViewById(R.id.model_activity_theme2).setOnClickListener(this);
         findViewById(R.id.model_activity_theme_factory).setOnClickListener(this);
         findViewById(R.id.model_activity_retrofit).setOnClickListener(this);
+        findViewById(R.id.model_activity_animate_list).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -205,6 +207,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
             startActivity(new Intent(this, ThemeFactoryActivity.class));
         } else if (v.getId() == R.id.model_activity_retrofit) {
             startActivity(new Intent(this, RetrofitActivity.class));
+        } else if (v.getId() == R.id.model_activity_animate_list) {
+            startActivity(new Intent(this, AnimateListActivity.class));
         }
     }
 }

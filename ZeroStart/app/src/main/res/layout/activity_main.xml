@@ -189,6 +189,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="model_activity_retrofit" />
+            <Button
+                android:id="@+id/model_activity_animate_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="动态加载list" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

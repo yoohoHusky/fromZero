@@ -72,6 +72,7 @@
         <activity android:name=".net.retrofit.RetrofitActivity"/>
         <activity android:name=".ui.activity.ConstraintActivity"/>
         <activity android:name=".ui.activity.AsyncValueActivity"/>
+        <activity android:name=".ui.activity.AnimateListActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">
