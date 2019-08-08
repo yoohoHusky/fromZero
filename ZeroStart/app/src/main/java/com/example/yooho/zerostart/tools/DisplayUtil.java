@@ -36,8 +36,9 @@ public class DisplayUtil {
      * @return
      */
     public static int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
+        return (int) pxValue;
+//        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+//        return (int) (pxValue / fontScale + 0.5f);
     }
 
     /**

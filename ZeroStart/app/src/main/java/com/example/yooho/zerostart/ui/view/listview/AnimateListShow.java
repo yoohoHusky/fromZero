@@ -8,8 +8,6 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.BounceInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 
@@ -214,7 +212,7 @@ public class AnimateListShow extends RelativeLayout {
         mChildViewList.get(position).getView().setScaleX(1.2f);
         mChildViewList.get(position).getView().setScaleY(1.2f);
         if (mLastCheckedPos != position && mLastCheckedPos != -1) {
-            if (mObserver != null) mObserver.chiildUnchecked(mLastCheckedPos);
+            if (mObserver != null) mObserver.childUnchecked(mLastCheckedPos);
             mChildViewList.get(mLastCheckedPos).getView().setScaleX(0.8f);
             mChildViewList.get(mLastCheckedPos).getView().setScaleY(0.8f);
         }
@@ -270,8 +268,6 @@ public class AnimateListShow extends RelativeLayout {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.e("SS", "onLayout");
-        int index = 0;
         if (mHeadView != null) {
             int left = (mWindowWidth - mHeadWidth) / 2;
             mHeadView.layout(left, 0, left + mHeadWidth, mHeadHeight);
@@ -283,7 +279,6 @@ public class AnimateListShow extends RelativeLayout {
                 int left = bean.getShowX(parseListProcessData(mProcess));
                 int top = mHeadHeight + bean.getShowY(parseListProcessData(mProcess));
                 childView.layout(left, top, left + mItemWidth, top + mItemHeight);
-                index ++;
             }
         }
 
@@ -298,13 +293,11 @@ public class AnimateListShow extends RelativeLayout {
             confirmView.getLayoutParams().width = width;
             confirmView.getLayoutParams().height = height;
             confirmView.layout(left, top, left + width, top + height);
-            Log.e("SSA", (left + width / 2) + "      " + (top + height / 2));
         }
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        Log.e("SS", "dispatchDraw");
         super.dispatchDraw(canvas);
         mHeadView.setAlpha(parseHeadProcessData(mProcess));
     }
@@ -317,7 +310,6 @@ public class AnimateListShow extends RelativeLayout {
 
 
     public void setProcess(float process) {
-        Log.e("SS", "setProcess  " + process);
         mProcess = process;
         requestLayout();
     }

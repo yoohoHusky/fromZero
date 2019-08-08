@@ -34,7 +34,7 @@ public class ZFBDashBoard extends View {
 
     int startAngle=160, sweepAngle=220;
     int maxNum = groupNum * 100;
-    private float mOut2Radius = 20;
+    private float mOut2Radius = 40;
     private int mCurrentNum;
 
     String[] evaluateList = {"较差", "中等", "良好", "优秀", "极好"};
@@ -94,8 +94,8 @@ public class ZFBDashBoard extends View {
         setMeasuredDimension(sizeWidth, sizeHeight);
     }
 
-    int sweepInWidth = DisplayUtil.px2dip(getContext(), 16);
-    int sweepOutWidth = DisplayUtil.px2dip(getContext(), 6);
+    int sweepInWidth = DisplayUtil.px2dip(getContext(), 16);    // 内圈宽度
+    int sweepOutWidth = DisplayUtil.px2dip(getContext(), 6);    // 外圈宽度
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -120,7 +120,7 @@ public class ZFBDashBoard extends View {
 
         canvas.save();
         paint3.setStyle(Paint.Style.FILL);
-        paint3.setTextSize(DisplayUtil.px2sp(getContext(), 25));
+        paint3.setTextSize(DisplayUtil.px2sp(getContext(), 40));
         paint3.setColor(Color.parseColor("#88ff88"));
         canvas.drawText(centerStr, -paint3.measureText(centerStr)/2, 0, paint3);
 
@@ -130,7 +130,7 @@ public class ZFBDashBoard extends View {
         canvas.drawText(addStr, -rect.width()/2, rect.height()/2 + 20, paint3);
 
         String descriptionStr = "m.toutiao.com";
-        canvas.drawText(descriptionStr, -paint3.measureText(descriptionStr)/2, 50, paint3);
+        canvas.drawText(descriptionStr, -paint3.measureText(descriptionStr)/2, 100, paint3);
 
         canvas.restore();
 
@@ -138,6 +138,7 @@ public class ZFBDashBoard extends View {
 
     int[] indicatorColor = {0xffffffff,0x00ffffff,0x99ffffff,0xffffffff};
 
+    // 画外圈进度条
     private void drawIndicator(Canvas canvas) {
         canvas.save();
         paint2.setStyle(Paint.Style.STROKE);
@@ -152,12 +153,14 @@ public class ZFBDashBoard extends View {
         }
         paint2.setStrokeWidth(sweepOutWidth);
 
+        // 画进度那条线
         Shader shader = new SweepGradient(0,0, indicatorColor, null);
         paint2.setShader(shader);
         int w = DisplayUtil.px2dip(getContext(), mOut2Radius);
         RectF rectF = new RectF(-radius-w, -radius-w, radius+w, radius+w);
         canvas.drawArc(rectF, startAngle, sweep, false, paint2);
 
+        // 画进度那个点
         float x = (float) ((radius+w)* Math.cos(Math.toRadians(startAngle + sweep)));
         float y = (float) ((radius+w)* Math.sin(Math.toRadians(startAngle + sweep)));
         paint3.setStyle(Paint.Style.FILL);
@@ -203,7 +206,7 @@ public class ZFBDashBoard extends View {
 
     private void drawInText(Canvas canvas, String s, Paint paint) {
         paint1.setColor(Color.WHITE);
-        paint1.setTextSize(15);
+        paint1.setTextSize(25);
         Rect rect = new Rect();
         paint.getTextBounds(s, 0, s.length(), rect);
         int textHeight = rect.bottom - rect.top;

@@ -17,18 +17,18 @@ public class AnimateListChildBean {
     private final int index;
     private final int itemPhase;
     private final int lineHeight;
-    int windowWidth;
-    int col;
-    int row;
+    private int windowWidth;
+    private int col;
+    private int row;
 
-    int width;
-    int height;
+    private int width;
+    private int height;
+
+    private View view;
 
     public View getView() {
         return view;
     }
-
-    View view;
 
     private int getLocalX() {
         if (row % 2 == 0) {

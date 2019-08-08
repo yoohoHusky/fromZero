@@ -73,6 +73,10 @@
         <activity android:name=".ui.activity.ConstraintActivity"/>
         <activity android:name=".ui.activity.AsyncValueActivity"/>
         <activity android:name=".ui.activity.AnimateListActivity"/>
+        <activity android:name=".ui.activity.PageUiActivity" />
+        <activity android:name=".ui.activity.ImmersiveActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.activity.PaletteActivity"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">
