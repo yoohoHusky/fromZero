@@ -29,3 +29,7 @@ task clean(type: Delete) {
 
 apply from: 'config.gradle'
 
+ext {
+    var = 23
+}
+
