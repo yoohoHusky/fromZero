@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ZeroStart.iml" filepath="$PROJECT_DIR$/ZeroStart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/ZeroStart-app.iml" filepath="$PROJECT_DIR$/app/ZeroStart-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylibrary/ZeroStart-mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/ZeroStart-mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylibrary2/ZeroStart-mylibrary2.iml" filepath="$PROJECT_DIR$/mylibrary2/ZeroStart-mylibrary2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fromZero-ZeroStart.iml" filepath="$PROJECT_DIR$/fromZero-ZeroStart.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary2/mylibrary2.iml" filepath="$PROJECT_DIR$/mylibrary2/mylibrary2.iml" />
     </modules>
