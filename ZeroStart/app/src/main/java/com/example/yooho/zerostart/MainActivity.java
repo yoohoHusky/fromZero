@@ -1,8 +1,18 @@
 package com.example.yooho.zerostart;
 
 import android.app.Activity;
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -20,7 +30,10 @@ import com.example.yooho.zerostart.net.rxjava.RxJavaDemoActivity;
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
+import com.example.yooho.zerostart.tools.ExeCommand;
+import com.example.yooho.zerostart.tools.MiscTools;
 import com.example.yooho.zerostart.tools.MyUtils;
+import com.example.yooho.zerostart.tools.UsbDeviceHelper;
 import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
 import com.example.yooho.zerostart.ui.activity.AnimateListActivity;
 import com.example.yooho.zerostart.ui.activity.PageUiActivity;
@@ -46,6 +59,15 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import static android.app.usage.UsageStatsManager.INTERVAL_BEST;
+import static android.app.usage.UsageStatsManager.INTERVAL_DAILY;
+import static android.app.usage.UsageStatsManager.INTERVAL_MONTHLY;
+import static android.app.usage.UsageStatsManager.INTERVAL_YEARLY;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -53,6 +75,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private IWXAPI wxapi;
     private View inflate;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,33 +120,35 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         initWeChat();
 
-        File str = getExternalFilesDir("");
-        Log.e("SS", str.toString());
+        MiscTools.getPackagesForUid(this, -1);
+        MiscTools.getPackagesForUid(this, 10208);
 
-
+        String str = new ExeCommand().run("dumpsys netstats detail", 10000).getResult();
+        Log.e("SS", str);
     }
 
-    private String getStr(byte[] b) {
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < b.length; i ++){
-            sb.append(b[i]);
-            Log.e("SS", b[i] + "");
-        }
-        return sb.toString();
-    }
 
-    public static String bytes2Hex(byte[] bts) {
-        String des = "";
-        String tmp = null;
-        for (int i = 0; i < bts.length; i++) {
-            tmp = (Integer.toHexString(bts[i] & 0xFF));
-            if (tmp.length() == 1) {
-                des += "0";
+    BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(context, "SS", Toast.LENGTH_LONG).show();
+            String action = intent.getAction();
+            if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)) {
+                Log.e("SS", "拔出usb了");
+                UsbDevice device = (UsbDevice) intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                if (device != null) {
+                    Toast.makeText(context, "设备的ProductId值为：" + device.getProductId() + "     设备的VendorId值为：" + device.getVendorId(),
+                            Toast.LENGTH_LONG).show();
+                    Log.e("SS", "设备的ProductId值为：" + device.getProductId());
+                    Log.e("SS", "设备的VendorId值为：" + device.getVendorId());
+                }
+            } else if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)) {
+                Log.e("SS", "插入usb了");
             }
-            des += tmp;
         }
-        return des;
-    }
+    };
+
+
+
 
     private void initWeChat() {
         wxapi = WXAPIFactory.createWXAPI(this, WX_APP_ID, true);
@@ -213,6 +238,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
             startActivity(new Intent(this, AnimateListActivity.class));
         } else if (v.getId() == R.id.model_activity_ui) {
             startActivity(new Intent(this, PageUiActivity.class));
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivity(intent);
         }
 
 

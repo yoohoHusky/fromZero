@@ -39,7 +39,7 @@ import java.util.TreeMap;
      *   <item name="android:windowIsFloating">true</item>
      *   <item name="android:windowIsTranslucent">true</item>
      *   <item name="android:background">@android:color/transparent</item>       # 设置title，context背景
-     *   <item name="android:backgroundDimEnabled">true</item>
+     *   <itemdroid:backgroundDimEnabled">true</item>
  *   </style>
  * 2、设置dialog动画
  * 1) 得到window
@@ -161,6 +161,7 @@ public class DialogActivity extends Activity {
                 MyDialog2 myDialog = new MyDialog2(DialogActivity.this, R.style.TransparentDialog);
                 myDialog.setCancelable(true);
                 myDialog.showDialog(R.layout.dialog_course_detail_exit, 0, 0);
+                myDialog.show();
             } else if (v.getId() == R.id.btn4) {
                 View inflate = View.inflate(DialogActivity.this, R.layout.view_float_window, null);
                 inflate.setOnClickListener(new View.OnClickListener() {
@@ -266,7 +267,7 @@ public class DialogActivity extends Activity {
             setContentView(layoutResId);
             setShowStyle(x, y);
             setCancelable(true);
-            show();
+//            show();
         }
 
         private void setShowStyle(int x, int y) {
@@ -310,6 +311,33 @@ public class DialogActivity extends Activity {
             attributes.y = 0;
 //            attributes.height = WindowManager.LayoutParams.MATCH_PARENT;
             attributes.gravity = Gravity.LEFT;
+        }
+    }
+
+    class BottomDialog extends Dialog {
+        public BottomDialog(Context context) {
+            super(context);
+        }
+
+        public BottomDialog(Context context, int themeResId) {
+            super(context, themeResId);
+        }
+
+        private void setShowStyle() {
+            Window window = getWindow();
+            window.setWindowAnimations(R.style.WebViewDialogAnim2);
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            attributes.x = 0;
+            attributes.y = 0;
+            attributes.width = WindowManager.LayoutParams.MATCH_PARENT;
+            attributes.gravity = Gravity.BOTTOM;
+            setCancelable(true);
+
+
+//            mBottomDialog = new BottomDialog(contextRef.get(), R.style.TransparentDialog);
+//            mBottomDialog.setContentView(initBaseView());
+//            mBottomDialog.setShowStyle();
+//            mBottomDialog.show();
         }
     }
 
