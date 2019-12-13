@@ -23,6 +23,7 @@ import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
 import com.example.yooho.zerostart.tools.MyUtils;
 import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
 import com.example.yooho.zerostart.ui.activity.AnimateListActivity;
+import com.example.yooho.zerostart.ui.activity.NotifyUiActivity;
 import com.example.yooho.zerostart.ui.activity.PageUiActivity;
 import com.example.yooho.zerostart.ui.activity.RecycleViewActivity;
 import com.example.yooho.zerostart.ui.activity.VolleyActivity;
@@ -92,6 +93,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         findViewById(R.id.model_activity_retrofit).setOnClickListener(this);
         findViewById(R.id.model_activity_animate_list).setOnClickListener(this);
         findViewById(R.id.model_activity_ui).setOnClickListener(this);
+        findViewById(R.id.model_activity_note).setOnClickListener(this);
 
         MyUtils.init(this);
 
@@ -213,7 +215,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
             startActivity(new Intent(this, AnimateListActivity.class));
         } else if (v.getId() == R.id.model_activity_ui) {
             startActivity(new Intent(this, PageUiActivity.class));
+        } else if (v.getId() == R.id.model_activity_note) {
+            startActivity(new Intent(this, NotifyUiActivity.class));
         }
+
+
 
 
     }

@@ -10,28 +10,38 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
+            android:id="@+id/list_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
 
             <Button
-                android:id="@+id/page_immersive"
+                android:id="@+id/snack_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="沉浸式相关操作" />
+                android:text="snackBar_1" />
             <Button
-                android:id="@+id/page_palette"
+                android:id="@+id/snack_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="palette取色器,有问题" />
+                android:text="带动作的snackbar" />
             <Button
-                android:id="@+id/page_tool_bar"
+                android:id="@+id/snack_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="顶部工具栏" />
+                android:text="定制背景图片" />
+            <Button
+                android:id="@+id/snack_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定制背景布局" />
+            <Button
+                android:id="@+id/snack_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定制布局空间 Toast" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

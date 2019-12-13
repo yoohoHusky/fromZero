@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/divider_bg"
+    >
+    <TextView
+        android:id="@+id/snack_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="snack_title"
+        android:layout_marginLeft="20dp"
+        android:background="#00bb0b"
+        android:layout_centerVertical="true"
+        />
+    <ImageView
+        android:id="@+id/snack_iv"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:src="@drawable/animate_list_child_user_head"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"/>
+    <CheckBox
+        android:id="@+id/snack_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="报名"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/snack_iv"/>
+
+</RelativeLayout>

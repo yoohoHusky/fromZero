@@ -16,6 +16,7 @@ public class PageUiActivity extends AppCompatActivity {
         PageListener listener = new PageListener();
         findViewById(R.id.page_immersive).setOnClickListener(listener);
         findViewById(R.id.page_palette).setOnClickListener(listener);
+        findViewById(R.id.page_tool_bar).setOnClickListener(listener);
     }
 
 
@@ -29,7 +30,12 @@ public class PageUiActivity extends AppCompatActivity {
             } else if (v.getId() == R.id.page_palette) {
                 Intent intent = new Intent(PageUiActivity.this, PaletteActivity.class);
                 startActivity(intent);
+            } else if (v.getId() == R.id.page_tool_bar) {
+                Intent intent = new Intent(PageUiActivity.this, DynamicBarActivity.class);
+                startActivity(intent);
             }
+
+
 
         }
     }

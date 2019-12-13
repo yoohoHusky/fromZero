@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
 
 
     <application
@@ -77,6 +80,17 @@
         <activity android:name=".ui.activity.ImmersiveActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".ui.activity.PaletteActivity"/>
+        <activity android:name=".ui.activity.DynamicBarActivity"/>
+        <activity android:name=".ui.activity.DynamicBarActivity1"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.activity.DynamicBarActivity2"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.activity.DynamicBarActivity3"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.activity.NotifyUiActivity"/>
+        <activity android:name=".ui.activity.NotifySnackBarActivity"
+            android:label="SnackbarSamples"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".myaidl.AIDLService"
             android:exported="true">

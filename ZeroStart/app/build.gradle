@@ -113,7 +113,8 @@ dependencies {
 
     //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:25.0.0'
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
@@ -138,5 +139,8 @@ dependencies {
     api 'com.facebook.fresco:webpsupport:1.13.0'
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'com.android.support:palette-v7:23.0.0+'
+    implementation 'com.android.support:design:+'
+//    compile 'com.bigkoo:convenientbanner:2.0.0'//banner
+//    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ZeroStart</string>
+    <string name="coordinatorLayout_title_behavior">com.example.yooho.zerostart.ui.behavior.TitleBehavior</string>
 </resources>

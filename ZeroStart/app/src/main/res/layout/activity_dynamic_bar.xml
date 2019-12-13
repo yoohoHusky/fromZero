@@ -18,20 +18,21 @@
             >
 
             <Button
-                android:id="@+id/page_immersive"
+                android:id="@+id/model_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="沉浸式相关操作" />
+                android:text="简单的topbar" />
             <Button
-                android:id="@+id/page_palette"
+                android:id="@+id/model_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="palette取色器,有问题" />
+                android:text="加入collapsingToolbarLayout" />
             <Button
-                android:id="@+id/page_tool_bar"
+                android:id="@+id/model_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="顶部工具栏" />
+                android:text="自定义behavior" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

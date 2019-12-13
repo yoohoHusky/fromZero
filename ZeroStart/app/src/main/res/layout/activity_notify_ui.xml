@@ -18,20 +18,10 @@
             >
 
             <Button
-                android:id="@+id/page_immersive"
+                android:id="@+id/notify_snack_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="沉浸式相关操作" />
-            <Button
-                android:id="@+id/page_palette"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="palette取色器,有问题" />
-            <Button
-                android:id="@+id/page_tool_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="顶部工具栏" />
+                android:text="snack_bar" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
