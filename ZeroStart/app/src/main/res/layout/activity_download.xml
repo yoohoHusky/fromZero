@@ -42,6 +42,37 @@
             android:layout_height="30dp"
             android:layout_marginTop="10dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/download_btn_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载一个apk"/>
+            <Button
+                android:id="@+id/download_btn_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载第二个apk"/>
+            <Button
+                android:id="@+id/download_btn_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载第三个apk"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/download_btn_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="监听下载"/>
+        <Button
+            android:id="@+id/download_btn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止监听"/>
 
     </LinearLayout>
 </RelativeLayout>

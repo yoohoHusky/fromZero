@@ -1,5 +1,6 @@
 package com.example.yooho.zerostart;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,10 +8,12 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 
+import com.example.yooho.zerostart.fakebean.DownloadAppBean;
+import com.example.yooho.zerostart.tools.DownloadTask;
+import com.example.yooho.zerostart.tools.DownloadUtils;
 import com.example.yooho.zerostart.ui.view.processbar.GlitterProcessBar;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yooho on 16/10/9.
@@ -19,18 +22,18 @@ public class DownloadModelActivity extends Activity {
 
     private static final int LOAD_RESTART = 101;
     private static final int LOAD_RECYCLE = 102;
+    private static final String TAG = "DownloadModelActivity";
 
     GlitterProcessBar glitterProcessBar;
     private int loadProcess;
     private int mStatus;
 
+    @SuppressLint("HandlerLeak")
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (mStatus != GlitterProcessBar.STATUS_DOWNLOADING) {
-                return;
-            }
+            if (mStatus != GlitterProcessBar.STATUS_DOWNLOADING) return;
             if (msg.what == LOAD_RESTART) {
                 Message obtain = Message.obtain(this);
                 obtain.what = LOAD_RECYCLE;
@@ -49,29 +52,31 @@ public class DownloadModelActivity extends Activity {
             }
         }
     };
+    private MyClickListener listener;
+    private MyDownloadObserver downloadObser;
+    private MyCommonDownloadObserver commonDownObserver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
 
-        String text = "abcdefgakla";
-        String key = "a";
+        initTools();
+        initFindView();
+        initViewClick();
+    }
 
+    private void initFindView() {
+        glitterProcessBar = findViewById(R.id.glitterProcess);
+        findViewById(R.id.download_btn_0).setOnClickListener(listener);
+        findViewById(R.id.download_btn_01).setOnClickListener(listener);
+        findViewById(R.id.download_btn_02).setOnClickListener(listener);
 
-        List<Integer> startList = null;
-        if (text.contains(key)) {
-            int index = text.indexOf(key, 0);
-            startList = new ArrayList<>();
-            while (index > -1) {
-                startList.add(index);
-                index = text.indexOf(key, index + 1);
-            }
-        }
+        findViewById(R.id.download_btn_1).setOnClickListener(listener);
+        findViewById(R.id.download_btn_2).setOnClickListener(listener);
+    }
 
-
-        glitterProcessBar = (GlitterProcessBar) findViewById(R.id.glitterProcess);
-
+    private void initViewClick() {
         glitterProcessBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,4 +99,86 @@ public class DownloadModelActivity extends Activity {
         });
     }
 
+    private void initTools() {
+        listener = new MyClickListener();
+        downloadObser = new MyDownloadObserver();
+        commonDownObserver = new MyCommonDownloadObserver();
+    }
+
+    class MyClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.download_btn_0) {
+                String downlaodUrl = "http://down.shouji.kuwo.cn/star/mobile/kwplayer_ar_pcguanwangmobile.apk";
+                DownloadTask downTask = new DownloadTask(DownloadModelActivity.this, downlaodUrl, "save1.apk", downloadObser, "down title 1", "Pl desc 1");
+                downTask.exeDownload();
+            } else if (v.getId() == R.id.download_btn_01) {
+                String downlaodUrl = "http://dldir1.qq.com/music/clntupate/QQMusic72282.apk";
+                DownloadTask downTask = new DownloadTask(DownloadModelActivity.this, downlaodUrl, "save2.apk", null, "down title 2", "Pl desc 2");
+                downTask.exeDownload();
+            } else if (v.getId() == R.id.download_btn_02) {
+                String downlaodUrl = "https://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk";
+                DownloadTask downTask = new DownloadTask(DownloadModelActivity.this, downlaodUrl, "save3.apk", null, "down title 3", "Pl desc 3");
+                downTask.exeDownload();
+            } else if (v.getId() == R.id.download_btn_1) {
+                DownloadUtils.getInst().registerListen(DownloadModelActivity.this, commonDownObserver);
+            } else if (v.getId() == R.id.download_btn_2) {
+                DownloadUtils.getInst().unRegisterListen();
+            }
+        }
+    }
+
+    class MyDownloadObserver implements DownloadTask.DownloadObserver {
+
+        @Override
+        public void onStartDownload() {
+            Log.e("SS", "onStartDownload");
+        }
+
+        @Override
+        public void onProcessUpdate(float process) {
+            Log.e("SS", "onProcessUpdate   :  " + process);
+        }
+
+        @Override
+        public void onDownloadComplete() {
+            Log.e("SS", "onDownloadComplete");
+        }
+
+        @Override
+        public void onDownloadCancel() {
+            Log.e("SS", "onDownloadCancel");
+        }
+    }
+
+    class MyCommonDownloadObserver implements DownloadUtils.CommonDownloadObserver{
+
+        @Override
+        public void onDownloadStart(DownloadAppBean downloadAppBean) {
+            Log.e(TAG, "start  id =  " + downloadAppBean.getId());
+            Log.e(TAG, "status  = " + downloadAppBean.getStatus());
+        }
+
+        @Override
+        public void onDownloadProcessChange(ArrayList<DownloadAppBean> beanList) {
+            for (int i = 0; i < beanList.size(); i++) {
+                Log.e(TAG, "   ----------   ");
+                Log.e(TAG, "update  id =  " + beanList.get(i).getId());
+                Log.e(TAG, "float  = " + beanList.get(i).getProcess());
+                Log.e(TAG, "status  = " + beanList.get(i).getStatus());
+            }
+        }
+
+        @Override
+        public void onDownloadCancel(DownloadAppBean downloadAppBean) {
+            Log.e(TAG, "cancel  id = " + downloadAppBean.getId());
+            Log.e(TAG, "status  = " + downloadAppBean.getStatus());
+        }
+
+        @Override
+        public void onDownloadComplete(DownloadAppBean downloadAppBean) {
+            Log.e(TAG, "complete  id = " + downloadAppBean.getId());
+            Log.e(TAG, "status  = " + downloadAppBean.getStatus());
+        }
+    }
 }
