@@ -28,8 +28,8 @@ import android.widget.Toast;
 
 import com.example.yooho.zerostart.tools.Miui;
 import com.example.yooho.zerostart.ui.activity.AddChooseViewActivity;
-import com.example.yooho.zerostart.ui.view.DragFloatActionButton;
-import com.example.yooho.zerostart.ui.view.icon.FloatBtnView;
+import com.example.yooho.zerostart.ui.view.manager.DragFloatWorker;
+import com.example.yooho.zerostart.ui.view.manager.MultyStatusViewManager;
 import com.yhao.floatwindow.PermissionListener;
 import com.yhao.floatwindow.ViewStateListener;
 
@@ -96,6 +96,7 @@ public class DialogActivity extends Activity {
     private ImageView mDialogAvatar;
     private TextView mDialogRankValue;
     private TextView mDialogScoreValue;
+    private MultyStatusViewManager mMultyManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,7 @@ public class DialogActivity extends Activity {
         findViewById(R.id.btn5).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn6).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn7).setOnClickListener(myOnclickListener);
+        findViewById(R.id.btn9).setOnClickListener(myOnclickListener);
         ((EditText)findViewById(R.id.btn8)).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -172,9 +174,7 @@ public class DialogActivity extends Activity {
                 myDialog.setCancelable(true);
                 myDialog.showDialog(R.layout.dialog_course_detail_exit, 0, 0);
             } else if (v.getId() == R.id.btn4) {
-
-                View inflate = new DragFloatActionButton(DialogActivity.this);
-//                View inflate = View.inflate(DialogActivity.this, R.layout.view_float_window, null);
+                View inflate = View.inflate(DialogActivity.this, R.layout.view_float_window, null);
                 inflate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -202,6 +202,11 @@ public class DialogActivity extends Activity {
                 MyDialog3 myDialog = new MyDialog3(DialogActivity.this, R.style.TransparentDialog);
                 myDialog.setCancelable(true);
                 myDialog.showDialog(R.layout.dialog_course_detail_splash, 0, 0);
+            } else if (v.getId() == R.id.btn9) {
+                DragFloatWorker worker = new DragFloatWorker(DialogActivity.this, new MyFloatListener());
+                mMultyManager = new MultyStatusViewManager(DialogActivity.this);
+                worker.setView(mMultyManager.getRootView());
+                worker.showFloatView();
             }
         }
     }
@@ -364,53 +369,17 @@ public class DialogActivity extends Activity {
         }
     }
 
-    private PermissionListener mPermissionListener = new PermissionListener() {
+    class MyFloatListener implements DragFloatWorker.FloatViewWatcher {
+
         @Override
-        public void onSuccess() {
-            Log.d(TAG, "onSuccess");
+        public void onGetFocus() {
+            mMultyManager.updateExtendStatus();
         }
 
         @Override
-        public void onFail() {
-            Log.d(TAG, "onFail");
+        public void onLostFocus() {
+            mMultyManager.updateCompressStatus();
         }
-    };
-
-    private ViewStateListener mViewStateListener = new ViewStateListener() {
-        @Override
-        public void onPositionUpdate(int x, int y) {
-            Log.d(TAG, "onPositionUpdate: x=" + x + " y=" + y);
-        }
-
-        @Override
-        public void onShow() {
-            Log.d(TAG, "onShow");
-        }
-
-        @Override
-        public void onHide() {
-            Log.d(TAG, "onHide");
-        }
-
-        @Override
-        public void onDismiss() {
-            Log.d(TAG, "onDismiss");
-        }
-
-        @Override
-        public void onMoveAnimStart() {
-            Log.d(TAG, "onMoveAnimStart");
-        }
-
-        @Override
-        public void onMoveAnimEnd() {
-            Log.d(TAG, "onMoveAnimEnd");
-        }
-
-        @Override
-        public void onBackToDesktop() {
-            Log.d(TAG, "onBackToDesktop");
-        }
-    };
+    }
 
 }

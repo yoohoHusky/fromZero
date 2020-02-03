@@ -82,7 +82,11 @@
                 android:textColorHint="#999999"
                 android:textSize="13sp"
                 android:maxLength="51"/>
-
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可滑动悬浮" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
