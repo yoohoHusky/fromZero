@@ -64,6 +64,7 @@ public class DownloadUtils {
 
     public void unRegisterListen() {
         Log.e(TAG, "Stop monitor download manager");
+        if (applicationContextRef == null || applicationContextRef.get() == null) return;
         applicationContextRef.get().unregisterReceiver(mReceiver);
         applicationContextRef.get().getContentResolver().unregisterContentObserver(mObserver);
         mCommonObserver = null;

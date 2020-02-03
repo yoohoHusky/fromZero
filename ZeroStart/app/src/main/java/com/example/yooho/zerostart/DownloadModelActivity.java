@@ -2,6 +2,7 @@ package com.example.yooho.zerostart;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.yooho.zerostart.fakebean.DownloadAppBean;
+import com.example.yooho.zerostart.tools.ApkFileUtils;
 import com.example.yooho.zerostart.tools.DownloadTask;
 import com.example.yooho.zerostart.tools.DownloadUtils;
+import com.example.yooho.zerostart.tools.MyUtils;
 import com.example.yooho.zerostart.ui.view.processbar.GlitterProcessBar;
 
 import java.util.ArrayList;
@@ -123,7 +126,12 @@ public class DownloadModelActivity extends Activity {
             } else if (v.getId() == R.id.download_btn_1) {
                 DownloadUtils.getInst().registerListen(DownloadModelActivity.this, commonDownObserver);
             } else if (v.getId() == R.id.download_btn_2) {
-                DownloadUtils.getInst().unRegisterListen();
+//                DownloadUtils.getInst().unRegisterListen();
+                //  file:///storage/emulated/0/Android/data/com.example.yooho.zerostart/files/Download/save1.apk
+                Uri uri = Uri.parse("file:///storage/emulated/0/Android/data/com.example.yooho.zerostart/files/Download/save1.apk");
+                String path = ApkFileUtils.getFilePathByUri(DownloadModelActivity.this, uri);
+                String packageName = ApkFileUtils.getApkInfo(DownloadModelActivity.this, path);
+                boolean install = ApkFileUtils.isApkInstall(DownloadModelActivity.this, packageName);
             }
         }
     }

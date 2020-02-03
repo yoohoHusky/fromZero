@@ -1,10 +1,14 @@
 package com.example.yooho.zerostart;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -22,7 +26,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.yooho.zerostart.tools.Miui;
 import com.example.yooho.zerostart.ui.activity.AddChooseViewActivity;
+import com.example.yooho.zerostart.ui.view.DragFloatActionButton;
+import com.example.yooho.zerostart.ui.view.icon.FloatBtnView;
+import com.yhao.floatwindow.PermissionListener;
+import com.yhao.floatwindow.ViewStateListener;
 
 import java.util.TreeMap;
 
@@ -77,6 +86,7 @@ import java.util.TreeMap;
  */
 public class DialogActivity extends Activity {
 
+    private static final String TAG = "DialogActivity";
     private RelativeLayout viewRoot;
     private PopupWindow popupWindow;
     String str = "";
@@ -162,7 +172,9 @@ public class DialogActivity extends Activity {
                 myDialog.setCancelable(true);
                 myDialog.showDialog(R.layout.dialog_course_detail_exit, 0, 0);
             } else if (v.getId() == R.id.btn4) {
-                View inflate = View.inflate(DialogActivity.this, R.layout.view_float_window, null);
+
+                View inflate = new DragFloatActionButton(DialogActivity.this);
+//                View inflate = View.inflate(DialogActivity.this, R.layout.view_float_window, null);
                 inflate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -200,19 +212,58 @@ public class DialogActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void showFloatView(View childView) {
+    //请求悬浮窗权限
+    @TargetApi(Build.VERSION_CODES.M)
+    private void getOverlayPermission() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        intent.setData(Uri.parse("package:" + getPackageName()));
+        startActivityForResult(intent, 0);
+    }
+
+    private void showFloatView(View mView) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (!Settings.canDrawOverlays(this)) {
+                //若未授权则请求权限
+                getOverlayPermission();
+                return;
+            }
+        }
+
         WindowManager wm = (WindowManager)getApplicationContext().getSystemService(WINDOW_SERVICE);
-        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-//        LayoutParams.TYPE_TOAST or TYPE_APPLICATION_PANEL
-//      params.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;   //如果设置为
-        params.type = WindowManager.LayoutParams.TYPE_TOAST; //
+//        WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+        WindowManager.LayoutParams params = (WindowManager.LayoutParams) mView.getLayoutParams();
+        setParamsType(getApplicationContext(), params);
+//        params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         params.gravity = Gravity.LEFT | Gravity.TOP;
         params.x = 0;
         params.y = 0;
-        wm.addView(childView, params);
+        wm.addView(mView, params);
+    }
+
+    private void setParamsType(Context context, WindowManager.LayoutParams params) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            req(params);
+        } else if (Miui.rom()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                req(params);
+            } else {
+                params.type = WindowManager.LayoutParams.TYPE_PHONE;
+                Miui.req(context, null);
+            }
+        } else {
+            params.type = WindowManager.LayoutParams.TYPE_TOAST;
+        }
+    }
+
+    private void req(WindowManager.LayoutParams params) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            params.type = WindowManager.LayoutParams.TYPE_PHONE;
+        }
     }
 
 
@@ -312,5 +363,54 @@ public class DialogActivity extends Activity {
             attributes.gravity = Gravity.LEFT;
         }
     }
+
+    private PermissionListener mPermissionListener = new PermissionListener() {
+        @Override
+        public void onSuccess() {
+            Log.d(TAG, "onSuccess");
+        }
+
+        @Override
+        public void onFail() {
+            Log.d(TAG, "onFail");
+        }
+    };
+
+    private ViewStateListener mViewStateListener = new ViewStateListener() {
+        @Override
+        public void onPositionUpdate(int x, int y) {
+            Log.d(TAG, "onPositionUpdate: x=" + x + " y=" + y);
+        }
+
+        @Override
+        public void onShow() {
+            Log.d(TAG, "onShow");
+        }
+
+        @Override
+        public void onHide() {
+            Log.d(TAG, "onHide");
+        }
+
+        @Override
+        public void onDismiss() {
+            Log.d(TAG, "onDismiss");
+        }
+
+        @Override
+        public void onMoveAnimStart() {
+            Log.d(TAG, "onMoveAnimStart");
+        }
+
+        @Override
+        public void onMoveAnimEnd() {
+            Log.d(TAG, "onMoveAnimEnd");
+        }
+
+        @Override
+        public void onBackToDesktop() {
+            Log.d(TAG, "onBackToDesktop");
+        }
+    };
 
 }
