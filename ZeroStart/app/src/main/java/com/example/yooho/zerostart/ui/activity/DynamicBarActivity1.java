@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.yooho.zerostart.R;
+import com.example.yooho.zerostart.tools.NewStatusBarUtil;
 
 import java.util.ArrayList;
 

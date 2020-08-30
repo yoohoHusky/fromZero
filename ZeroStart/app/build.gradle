@@ -6,7 +6,8 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "com.example.yooho.zerostart"
+//        applicationId "com.example.yooho.zerostart"
+        applicationId "com.example.yooho.zerostart.develop"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1

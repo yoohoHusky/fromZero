@@ -87,6 +87,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="可滑动悬浮" />
+            <Button
+                android:id="@+id/btn10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="隐藏可滑动悬浮" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.yooho.zerostart.R;
+import com.example.yooho.zerostart.tools.NewStatusBarUtil;
 
 public class ImmersiveActivity extends AppCompatActivity {
     private View mDecorView;
@@ -19,6 +20,8 @@ public class ImmersiveActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_immersive);
+        NewStatusBarUtil.setTransparent(ImmersiveActivity.this);
+
         mDecorView = getWindow().getDecorView();
 
         ImmListener listener = new ImmListener();

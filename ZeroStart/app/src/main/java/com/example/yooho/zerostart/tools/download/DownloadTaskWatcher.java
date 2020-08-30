@@ -1,4 +1,4 @@
-package com.example.yooho.zerostart.tools;
+package com.example.yooho.zerostart.tools.download;
 
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
@@ -10,8 +10,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.yooho.zerostart.fakebean.DownloadAppBean;
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,12 +17,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class DownloadUtils {
+public class DownloadTaskWatcher {
     private static final String TAG = "DownloadUtils";
     private static final int TIME_INTERVAL_PROCESS_UPDATE = 700;
     private static final int TIME_DELAY_PROCESS_UPDATE = 300;
 
-    private static DownloadUtils mInst;
+    private static DownloadTaskWatcher mInst;
     private Timer mTimer;
 
     private DownloadStatusObserver mObserver;
@@ -35,18 +33,18 @@ public class DownloadUtils {
     private ArrayList<DownloadAppBean> downAppList;
     private WeakReference<Context> applicationContextRef;
 
-    private DownloadUtils() {
+    private DownloadTaskWatcher() {
         if (mReceiver == null) mReceiver = new MyDownloadReceiver();
         if (mObserver == null) mObserver = new DownloadStatusObserver();
         if (mTimer == null) mTimer = new Timer();
         downAppList = new ArrayList();
     }
 
-    public static DownloadUtils getInst() {
+    public static DownloadTaskWatcher getInst() {
         if (mInst == null) {
-            synchronized (DownloadUtils.class) {
+            synchronized (DownloadTaskWatcher.class) {
                 if (mInst == null) {
-                    mInst = new DownloadUtils();
+                    mInst = new DownloadTaskWatcher();
                 }
             }
         }
@@ -99,6 +97,7 @@ public class DownloadUtils {
     private class MyDownloadReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.e("SS", "onReceive");
             long downId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
             DownloadAppBean currentBean = null;
 
@@ -138,6 +137,7 @@ public class DownloadUtils {
         }
 
         private void getDownloadStart(Cursor cursor) {
+            Log.e("SS", "getDownloadStart");
             if (cursor == null || !cursor.moveToFirst()) return;           // 收到通知，但不是自己应用的
 
             if (downAppList == null) downAppList = new ArrayList();

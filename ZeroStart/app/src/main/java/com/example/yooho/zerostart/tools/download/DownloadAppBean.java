@@ -1,4 +1,4 @@
-package com.example.yooho.zerostart.fakebean;
+package com.example.yooho.zerostart.tools.download;
 
 public class DownloadAppBean {
 //                int byte0 = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));    //已经下载文件大小

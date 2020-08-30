@@ -41,6 +41,17 @@ public class SpTools {
         mEdit.apply();
     }
 
+    public int getInt(String key, int defaultValue) {
+        if (mSharedPreferences == null) return defaultValue;
+        return mSharedPreferences.getInt(key, defaultValue);
+    }
+
+    public void saveInt(String key, int value) {
+        if (mSharedPreferences == null || mEdit == null) return;
+        mEdit.putInt(key, value);
+        mEdit.apply();
+    }
+
     public boolean getBoolean(String key) {
         if (mSharedPreferences == null) return false;
         return mSharedPreferences.getBoolean(key, false);

@@ -3,7 +3,6 @@ package com.example.yooho.zerostart.ui.view.manager;
 import android.content.Context;
 import android.view.View;
 
-import com.example.yooho.zerostart.DialogActivity;
 import com.example.yooho.zerostart.R;
 
 import java.lang.ref.WeakReference;

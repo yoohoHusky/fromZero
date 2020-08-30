@@ -204,6 +204,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="提示消息相关UI" />
+            <Button
+                android:id="@+id/div_view_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自定义组件页面" />
 
         </LinearLayout>
     </ScrollView>

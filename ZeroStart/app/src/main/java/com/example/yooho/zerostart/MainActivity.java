@@ -20,9 +20,12 @@ import com.example.yooho.zerostart.net.rxjava.RxJavaDemoActivity;
 import com.example.yooho.zerostart.screenshotter.ScreenShotterAct;
 import com.example.yooho.zerostart.system.SystemTestActivity;
 import com.example.yooho.zerostart.tabhost.IndexEnterActivity;
+import com.example.yooho.zerostart.tools.DisplayUtil;
 import com.example.yooho.zerostart.tools.MyUtils;
+import com.example.yooho.zerostart.tools.NewStatusBarUtil;
 import com.example.yooho.zerostart.ui.VerticalSeekbarActivity;
 import com.example.yooho.zerostart.ui.activity.AnimateListActivity;
+import com.example.yooho.zerostart.ui.activity.DiyViewActivity;
 import com.example.yooho.zerostart.ui.activity.NotifyUiActivity;
 import com.example.yooho.zerostart.ui.activity.PageUiActivity;
 import com.example.yooho.zerostart.ui.activity.RecycleViewActivity;
@@ -58,6 +61,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NewStatusBarUtil.setTransparent(MainActivity.this);
+
         findViewById(R.id.model_download).setOnClickListener(this);
         findViewById(R.id.model_dialog).setOnClickListener(this);
         findViewById(R.id.model_text_view).setOnClickListener(this);
@@ -94,15 +99,17 @@ public class MainActivity extends Activity implements View.OnClickListener{
         findViewById(R.id.model_activity_animate_list).setOnClickListener(this);
         findViewById(R.id.model_activity_ui).setOnClickListener(this);
         findViewById(R.id.model_activity_note).setOnClickListener(this);
+        findViewById(R.id.div_view_activity).setOnClickListener(this);
 
         MyUtils.init(this);
 
         initWeChat();
 
-        File str = getExternalFilesDir("");
-        Log.e("SS", str.toString());
+        int width = DisplayUtil.getScreenWidth(MainActivity.this);
+        final float scale = getResources().getDisplayMetrics().density;
+        int width30 = DisplayUtil.dip2px(MainActivity.this, 30);
 
-
+        Log.e("SSA", width + "    " + scale + "     " + width30);
     }
 
     private String getStr(byte[] b) {
@@ -217,6 +224,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
             startActivity(new Intent(this, PageUiActivity.class));
         } else if (v.getId() == R.id.model_activity_note) {
             startActivity(new Intent(this, NotifyUiActivity.class));
+        } else if (v.getId() == R.id.div_view_activity) {
+            startActivity(new Intent(this, DiyViewActivity.class));
         }
 
 

@@ -9,11 +9,10 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 
-import com.example.yooho.zerostart.fakebean.DownloadAppBean;
+import com.example.yooho.zerostart.tools.download.DownloadAppBean;
 import com.example.yooho.zerostart.tools.ApkFileUtils;
-import com.example.yooho.zerostart.tools.DownloadTask;
-import com.example.yooho.zerostart.tools.DownloadUtils;
-import com.example.yooho.zerostart.tools.MyUtils;
+import com.example.yooho.zerostart.tools.download.DownloadTask;
+import com.example.yooho.zerostart.tools.download.DownloadTaskWatcher;
 import com.example.yooho.zerostart.ui.view.processbar.GlitterProcessBar;
 
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class DownloadModelActivity extends Activity {
                 DownloadTask downTask = new DownloadTask(DownloadModelActivity.this, downlaodUrl, "save3.apk", null, "down title 3", "Pl desc 3");
                 downTask.exeDownload();
             } else if (v.getId() == R.id.download_btn_1) {
-                DownloadUtils.getInst().registerListen(DownloadModelActivity.this, commonDownObserver);
+                DownloadTaskWatcher.getInst().registerListen(DownloadModelActivity.this, commonDownObserver);
             } else if (v.getId() == R.id.download_btn_2) {
 //                DownloadUtils.getInst().unRegisterListen();
                 //  file:///storage/emulated/0/Android/data/com.example.yooho.zerostart/files/Download/save1.apk
@@ -159,7 +158,7 @@ public class DownloadModelActivity extends Activity {
         }
     }
 
-    class MyCommonDownloadObserver implements DownloadUtils.CommonDownloadObserver{
+    class MyCommonDownloadObserver implements DownloadTaskWatcher.CommonDownloadObserver{
 
         @Override
         public void onDownloadStart(DownloadAppBean downloadAppBean) {

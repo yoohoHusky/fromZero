@@ -2,15 +2,12 @@ package com.example.yooho.zerostart.ui.view.manager;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -19,22 +16,24 @@ import android.view.WindowManager;
 import android.view.animation.BounceInterpolator;
 
 import com.example.yooho.zerostart.R;
+import com.example.yooho.zerostart.constant.SpKeyConstant;
 import com.example.yooho.zerostart.tools.Miui;
-import com.example.yooho.zerostart.tools.ScreenTools;
+import com.example.yooho.zerostart.tools.SpTools;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 
 import static android.content.Context.WINDOW_SERVICE;
 
-public class DragFloatWorker {
+public class DragFloatManager {
 
     private static final int INIT_LOCATION_Y = 300;
     private static final int TIME_LOST_FOCUS_DELAY = 4000;
     private static final int TIME_ALIGN_BORDER_DELAY = 100;
     private static final int TIME_DRAG_MIN = 100;      // 认为up、down之间的时间少于300，就认为是在click，超过300就是在移动了
 
-    private final FloatViewWatcher mWatcher;
-    private WeakReference<Activity> mActRef;
+    private static DragFloatManager mInst;
+    private WeakReference<Context> mContextRef;
     private View mRootView;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mLayoutParams;
@@ -52,23 +51,55 @@ public class DragFloatWorker {
     private long downTime;
     private Runnable mDelayAlignBorder;
     private Runnable mDelayNofityCompress;
+    private HashMap<String, FloatViewWatcher> mWatcherMap;
 
-
-    public DragFloatWorker(Activity activity, FloatViewWatcher watcher) {
-        mActRef = new WeakReference(activity);
-        mWatcher = watcher;
-        initWindowParams(activity);
-        mTouchListener = new MyRootTouchListener();
-        initHandler();
+    public static DragFloatManager getInst() {
+        if (mInst == null) {
+            synchronized (DragFloatManager.class) {
+                if (mInst == null) {
+                    mInst = new DragFloatManager();
+                }
+            }
+        }
+        return mInst;
     }
 
-    private void initHandler() {
-        mHandler = new Handler();
-        mDelayNofityCompress = () -> {
-            if (mWatcher != null) mWatcher.onLostFocus();
-            mHandler.postDelayed(mDelayAlignBorder, TIME_ALIGN_BORDER_DELAY);
-        };
-        mDelayAlignBorder = () -> alignBorder();
+    public void init(Context context) {
+        if (mContextRef != null && mContextRef.get() != null) return;
+        mContextRef = new WeakReference(context);
+        initWindowParams(context);
+        mTouchListener = new MyRootTouchListener();
+        initHandler();
+        checkRequestPermission();
+    }
+
+    /**
+     * 向manager中注册监听
+     * @param tag       注册watcher对应的名字，用于判断覆盖添加，移除时作用
+     * @param watcher   监听器
+     * @return          是否添加成功
+     */
+    public boolean registerFloatViewWatcher(String tag, FloatViewWatcher watcher) {
+        if (mWatcherMap == null) mWatcherMap = new HashMap();
+
+        if (mWatcherMap.containsKey(tag)) return false; // key名字已被占用，不能覆盖添加，添加失败
+        mWatcherMap.put(tag, watcher);
+        return true;
+    }
+
+    /**
+     *
+     * @param tag
+     * @return  >=0,表示不再继续监听，0-表示map之前就没监听；1-表示从map中删除成功; <0-表示删除不成功，-1-表示不包含这个key
+     */
+    public int unregisterFloatWatcher(String tag) {
+        if (mWatcherMap == null || mWatcherMap.isEmpty()) return 0;
+        if (mWatcherMap.containsKey(tag)) {
+            mWatcherMap.remove(tag);
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     public void setView(View view) {
@@ -76,39 +107,88 @@ public class DragFloatWorker {
     }
 
     public void showFloatView() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (!Settings.canDrawOverlays(mActRef.get())) {
-                getOverlayPermission(); //若未授权则请求权限
-                return;
-            }
-        }
+        if (!checkRequestPermission()) return;
         handleRootView();
-        mRootView.setOnTouchListener(mTouchListener);
         mWindowManager.addView(mRootView, mLayoutParams);
+        mHandler.postDelayed(mDelayNofityCompress, TIME_LOST_FOCUS_DELAY);
     }
 
-    /*  内部方法  */
+    public void dismissFloatView() {
+        if (mContextRef == null) return;
+        savePositionData();
+        mWindowManager.removeView(mRootView);
+    }
 
+
+    /*  内部方法  */
     // 设置layout参数
-    private void initWindowParams(Activity activity) {
-        mWindowManager = (WindowManager)activity.getApplicationContext().getSystemService(WINDOW_SERVICE);
+
+    private DragFloatManager() {}
+
+    private void initWindowParams(Context context) {
+        mWindowManager = (WindowManager)context.getApplicationContext().getSystemService(WINDOW_SERVICE);
         mLayoutParams = new WindowManager.LayoutParams();
-        setParamsType(activity.getApplicationContext(), mLayoutParams);
+        setParamsType(context.getApplicationContext(), mLayoutParams);
         mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         mLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
         mLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
         mLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        mLayoutParams.x = 0;
-        mLayoutParams.y = INIT_LOCATION_Y;
+        mLayoutParams.x = SpTools.getInst().getInt(SpKeyConstant.KEY_DRAG_FLOAT_LOCATION_X, 0);
+        mLayoutParams.y = SpTools.getInst().getInt(SpKeyConstant.KEY_DRAG_FLOAT_LOCATION_Y, INIT_LOCATION_Y);
 
         // 屏幕像素参数
         Display display = mWindowManager.getDefaultDisplay();
         screenWidth = display.getWidth();
         screenHeight = display.getHeight();
     }
+    // 创建handler
+
+    private void initHandler() {
+        mHandler = new Handler();
+        mDelayNofityCompress = () -> {
+            notifyLostFocus();
+            mHandler.postDelayed(mDelayAlignBorder, TIME_ALIGN_BORDER_DELAY);
+        };
+        mDelayAlignBorder = () -> alignBorder();
+    }
+
+    private void notifyLostFocus() {
+        if (mWatcherMap == null || mWatcherMap.isEmpty()) return;
+        for (FloatViewWatcher watcher : mWatcherMap.values()) {
+            watcher.onLostFocus();
+        }
+    }
+
+    private void notifyGetFocus() {
+        if (mWatcherMap == null || mWatcherMap.isEmpty()) return;
+        for (FloatViewWatcher watcher : mWatcherMap.values()) {
+            watcher.onGetFocus();
+        }
+    }
+
+
+    // 是否已获得对应的权限
+    private boolean checkRequestPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (!Settings.canDrawOverlays(mContextRef.get())) { //若未授权则请求权限
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                intent.setData(Uri.parse("package:" + mContextRef.get().getPackageName()));
+                mContextRef.get().startActivity(intent);
+//                mContextRef.get().startActivityForResult(intent, 0);
+                return false;
+            }
+        }
+        return true;
+    }
 
     private void handleRootView() {
-        if (mRootView == null) mRootView = View.inflate(mActRef.get(), R.layout.view_float_window, null);
+        if (mRootView != null) mRootView = View.inflate(mContextRef.get(), R.layout.view_float_window, null);
+        mRootView.setOnTouchListener(mTouchListener);
+    }
+
+    private void savePositionData() {
+        SpTools.getInst().saveInt(SpKeyConstant.KEY_DRAG_FLOAT_LOCATION_X, mLayoutParams.x);
+        SpTools.getInst().saveInt(SpKeyConstant.KEY_DRAG_FLOAT_LOCATION_Y, mLayoutParams.y);
     }
 
     private void updateMeasureData() {
@@ -116,7 +196,7 @@ public class DragFloatWorker {
         mMinY = 0;
         mMaxX = screenWidth - mRootView.getWidth();
         mMaxY = screenHeight - mRootView.getHeight();
-//        mMinY = ScreenTools.getStatusBarHeight(mActRef.get());
+//        mMinY = ScreenTools.getStatusBarHeight(mContextRef.get());
     }
 
 
@@ -124,14 +204,6 @@ public class DragFloatWorker {
         mLayoutParams.x = getValidValue(x, mMinX, mMaxX);
         mLayoutParams.y = getValidValue(y, mMinY, mMaxY);
         mWindowManager.updateViewLayout(mRootView, mLayoutParams);
-    }
-
-    //请求悬浮窗权限
-    @TargetApi(Build.VERSION_CODES.M)
-    private void getOverlayPermission() {
-        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-        intent.setData(Uri.parse("package:" + mActRef.get().getPackageName()));
-        mActRef.get().startActivityForResult(intent, 0);
     }
 
     private void setParamsType(Context context, WindowManager.LayoutParams params) {
@@ -182,8 +254,8 @@ public class DragFloatWorker {
                     updateXY(mLayoutParams.x + dx, mLayoutParams.y + dy);
                     break;
                 case MotionEvent.ACTION_UP:
-                    if (!isDrag() && mWatcher != null) {
-                        mWatcher.onGetFocus();
+                    if (!isDrag() && mWatcherMap != null && !mWatcherMap.isEmpty()) {
+                        notifyGetFocus();
                         mHandler.postDelayed(mDelayAlignBorder, TIME_ALIGN_BORDER_DELAY);
                     }
                     alignBorder();

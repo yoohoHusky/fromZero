@@ -28,10 +28,8 @@ import android.widget.Toast;
 
 import com.example.yooho.zerostart.tools.Miui;
 import com.example.yooho.zerostart.ui.activity.AddChooseViewActivity;
-import com.example.yooho.zerostart.ui.view.manager.DragFloatWorker;
+import com.example.yooho.zerostart.ui.view.manager.DragFloatManager;
 import com.example.yooho.zerostart.ui.view.manager.MultyStatusViewManager;
-import com.yhao.floatwindow.PermissionListener;
-import com.yhao.floatwindow.ViewStateListener;
 
 import java.util.TreeMap;
 
@@ -118,6 +116,7 @@ public class DialogActivity extends Activity {
         findViewById(R.id.btn6).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn7).setOnClickListener(myOnclickListener);
         findViewById(R.id.btn9).setOnClickListener(myOnclickListener);
+        findViewById(R.id.btn10).setOnClickListener(myOnclickListener);
         ((EditText)findViewById(R.id.btn8)).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -203,10 +202,14 @@ public class DialogActivity extends Activity {
                 myDialog.setCancelable(true);
                 myDialog.showDialog(R.layout.dialog_course_detail_splash, 0, 0);
             } else if (v.getId() == R.id.btn9) {
-                DragFloatWorker worker = new DragFloatWorker(DialogActivity.this, new MyFloatListener());
                 mMultyManager = new MultyStatusViewManager(DialogActivity.this);
-                worker.setView(mMultyManager.getRootView());
-                worker.showFloatView();
+
+                DragFloatManager.getInst().init(DialogActivity.this);
+                DragFloatManager.getInst().registerFloatViewWatcher("DialogActivity", new MyFloatListener());
+                DragFloatManager.getInst().setView(mMultyManager.getRootView());
+                DragFloatManager.getInst().showFloatView();
+            } else if (v.getId() == R.id.btn10) {
+                DragFloatManager.getInst().dismissFloatView();
             }
         }
     }
@@ -369,7 +372,7 @@ public class DialogActivity extends Activity {
         }
     }
 
-    class MyFloatListener implements DragFloatWorker.FloatViewWatcher {
+    class MyFloatListener implements DragFloatManager.FloatViewWatcher {
 
         @Override
         public void onGetFocus() {

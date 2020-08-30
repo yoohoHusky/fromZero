@@ -45,6 +45,8 @@
         <activity android:name=".ui.view.icon.NumberIconActivity" />
         <activity android:name=".ui.view.line.DynamicalLineActivity" />
         <activity android:name=".ui.view.weather.WeatherDemoActivity" />
+        <activity android:name=".ui.activity.DiyViewActivity" />
+        <activity android:name=".ui.activity.DiyRuleActivity" />
         <activity android:name=".ui.view.hidetitle.HideTitleActivity" />
         <activity android:name=".ui.view.listview.MyExpandListActivity" />
         <activity android:name=".ui.view.listview.PinnedListActivity" />
@@ -109,7 +111,7 @@
         <!-- test download -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="com.example.yooho.zerostart.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
